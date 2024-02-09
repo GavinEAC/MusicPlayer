@@ -18,4 +18,5 @@ My First GitHub Project. A Music Player For CS 10
 -[ ] have scrollable list of songs or playlists <br>
 -[ ] Create way for playlists to be created <br>
 -[ ] create button for playing in order or shuffling <br>
+-[ ] song progress bar <br>
 -[ ]<del> I dont wanna do this</del>
