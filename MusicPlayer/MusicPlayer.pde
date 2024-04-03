@@ -1,19 +1,37 @@
-import ddf.minim.*;
-import ddf.minim.analysis.*;
-import ddf.minim.effects.*;
-import ddf.minim.signals.*;
-import ddf.minim.spi.*;
-import ddf.minim.ugens.*;
-
-
 //Global Variables
 //
-void setup() {} //End setup
-//
-void draw() {} //End Draw
-//
-void keyPressed() {} //End keyPressed
-//
-void mousePressed() {} //End mousePressed
-//
+void setup() {
+  //Concatenation and inspecting variables with character escapes
+  //all values are null until size(), arithmetic errors
+  println("Width: " + width,
+          "\nHeight: " + height,
+          "\nDisaplay Width: " + displayWidth,
+          "\nDisplay Height: " + displayHeight
+          );
+  //
+  //Display: CANVAS and FULLSCREEN
+  size(600, 600);
+  //fullScreen();
+  int appWidth = width;
+  int appHeight = height;
+  println(appWidth, appHeight);
+  
+} 
+//End setup
+
+void draw() {
+  
+}
+//End Draw
+
+void keyPressed() {
+  
+}
+//End keyPressed
+
+void mousePressed() {
+  
+} 
+//End mousePressed
+
 // End MAIN Program
