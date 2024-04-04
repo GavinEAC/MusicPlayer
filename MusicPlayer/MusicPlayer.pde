@@ -1,21 +1,28 @@
 //Global Variables
+int appWidth, appHeight;
+float backgroundX, backgroundY, backgroundWidth, backgroundHeight;
 //
+//Populate
+backgroundX = appWidth;
+backgroundY = appHeight;
+backgroundWidth = appWidth; 
+backgroundHeight = appHeight;
+
+ 
 void setup() {
-  //Concatenation and inspecting variables with character escapes
-  //all values are null until size(), arithmetic errors
-  println("Width: " + width,
-          "\nHeight: " + height,
-          "\nDisaplay Width: " + displayWidth,
-          "\nDisplay Height: " + displayHeight
-          );
-  //
   //Display: CANVAS and FULLSCREEN
-  size(600, 600);
-  //fullScreen();
-  int appWidth = width;
-  int appHeight = height;
-  println(appWidth, appHeight);
-  
+  //size(600, 600); //Width, Height
+  fullScreen();// displayWidth, displayHeight
+  appWidth = displayWidth;
+  appHeight = displayHeight;
+  //landscape is HARDCODED
+  String displayInstructions = (appWidth >= appHeight) ? "Good to go" : "Not Good" ;
+  println(displayInstructions);
+  //
+  //Layout divs
+  //rect(X, Y, Width, Height);
+  rect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
+
 } 
 //End setup
 
