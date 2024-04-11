@@ -1,13 +1,22 @@
 //GLOBAL VARIABLES
 int appWidth, appHeight;
+
 //rect Variable declaration
 float backgroundX, backgroundY, backgroundWidth, backgroundHeight;
+
+//topBar Variables
+float topBarX, topBarY, topBarWidth, topBarHeight;
+
+//topBarButton Variables
+float topButtonY, topButtonWidth, topButtonHeight;
+float musicButtonX, settingsButtonX, downloadButtonX, quitButtonX;
+
 //Panel variables
 float panelOneX, panelOneY, panelOneWidth, panelOneHeight;
 float panelTwoX, panelTwoY, panelTwoWidth, panelTwoHeight;
 float panelThreeX, panelThreeY, panelThreeWidth, panelThreeHeight;
 
-float topBarX, topBarY, topBarWidth, topBarHeight;
+//panelOneContent Variable
 float albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight;
 float songTextX, songTextY, songTextWidth, songTextHeight;
 
@@ -15,7 +24,7 @@ float songTextX, songTextY, songTextWidth, songTextHeight;
 PImage demoAlbumCover;
 
 //topBar buttons
-PImage settingIcon, musicNoteIcon, downloadIcon;
+PImage settingIcon, musicNoteIcon, downloadIcon, quitButtonIcon;
 
 //SETUP
 void setup() {
@@ -41,6 +50,16 @@ void setup() {
   topBarY = appHeight*0;
   topBarWidth = appWidth;
   topBarHeight = appHeight*1/10;
+  
+  //topBarButtonRects
+  topButtonY = topBarHeight*0;
+  topButtonWidth = topBarHeight;
+  topButtonHeight = topBarHeight;
+  settingsButtonX = topBarHeight*0;
+  musicButtonX = topBarHeight*1 + topBarWidth*1/100;
+  downloadButtonX = topBarHeight*2 + topBarWidth*1/100;
+  quitButtonX  = topBarHeight*16.777777;
+  
   
   //panelOneRect
   panelOneX = appWidth*0;
@@ -77,9 +96,24 @@ void setup() {
   //rect(X, Y, Width, Height)
   rect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
   
-  fill(0,25,45);
+  //topBarRect
+  fill(255,255,255);
   rect(topBarX, topBarY, topBarWidth, topBarHeight);
+  println(topBarWidth, topBarHeight);
   
+  //topBarButtonRect
+  //Uncomment to see real position of bar buttons
+  fill(255,0,0);
+  rect(settingsButtonX, topButtonY, topButtonWidth, topButtonHeight);
+  fill(0,255,0);
+  rect(musicButtonX, topButtonY, topButtonWidth, topButtonHeight);
+  fill(0,0,255);
+  rect(downloadButtonX, topButtonY, topButtonWidth, topButtonHeight);
+  //rect(quitButtonX, topButtonY, topButtonWidth, topButtonHeight);
+  
+ 
+  
+  //panelRects
   fill(255,0,0);
   rect(panelOneX, panelOneY, panelOneWidth, panelOneHeight);
   
@@ -89,6 +123,7 @@ void setup() {
   fill(0,0,255);
   rect(panelThreeX, panelThreeY, panelThreeWidth, panelThreeHeight);
   
+  //albumCoverRect
   strokeWeight(16);
   stroke(50,50,50);
   rect(albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
@@ -140,11 +175,16 @@ void draw() {
   image(demoAlbumCover, albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight );
   
   settingIcon = loadImage("settingsIcon.png");
-  image(settingIcon, topBarWidth*0/15, topBarHeight*0, topBarHeight, topBarHeight);
+  //image(settingIcon, settingsButtonX, topBarHeight*0, topBarHeight, topBarHeight);
   musicNoteIcon = loadImage("musicNoteIcon.png");
-  image(musicNoteIcon, topBarWidth*1/15, topBarHeight*0, topBarHeight, topBarHeight);
+  //image(musicNoteIcon, musicButtonX + topBarWidth*1/100, topButtonY, topButtonWidth, topButtonHeight);
   downloadIcon = loadImage("downloadIcon.png");
-  image(downloadIcon, topBarWidth*2/15, topBarHeight*0, topBarHeight, topBarHeight);
+  //image(downloadIcon, downloadButtonX + topBarWidth*3/100, topButtonY, topButtonWidth, topButtonHeight);
+  quitButtonIcon = loadImage("quitButtonIcon.png");
+  //more sevens would be more accurate but cmon man no one will see the difference at a certain point
+  image(quitButtonIcon, quitButtonX, topButtonY, topButtonWidth, topButtonHeight);
+  
+  //if(mouseX > 
   
   
   
