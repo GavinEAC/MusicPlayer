@@ -10,6 +10,7 @@ float topBarX, topBarY, topBarWidth, topBarHeight;
 //topBarButton Variables
 float topButtonY, topButtonWidth, topButtonHeight;
 float musicButtonX, settingsButtonX, downloadButtonX, quitButtonX;
+color quitButtonColor = color(255,255,255);
 
 //Panel variables
 float panelOneX, panelOneY, panelOneWidth, panelOneHeight;
@@ -56,9 +57,9 @@ void setup() {
   topButtonWidth = topBarHeight;
   topButtonHeight = topBarHeight;
   settingsButtonX = topBarHeight*0;
-  musicButtonX = topBarHeight*1 + topBarWidth*1/100;
-  downloadButtonX = topBarHeight*2 + topBarWidth*1/100;
-  quitButtonX  = topBarHeight*16.777777;
+  musicButtonX = topBarHeight*1;
+  downloadButtonX = topBarHeight*2;
+  quitButtonX  = topBarHeight*17;
   
   
   //panelOneRect
@@ -103,12 +104,13 @@ void setup() {
   
   //topBarButtonRect
   //Uncomment to see real position of bar buttons
-  fill(255,0,0);
-  rect(settingsButtonX, topButtonY, topButtonWidth, topButtonHeight);
-  fill(0,255,0);
-  rect(musicButtonX, topButtonY, topButtonWidth, topButtonHeight);
-  fill(0,0,255);
-  rect(downloadButtonX, topButtonY, topButtonWidth, topButtonHeight);
+  //fill(255,0,0);
+  //rect(settingsButtonX, topButtonY, topButtonWidth, topButtonHeight);
+  //fill(0,255,0);
+  //rect(musicButtonX, topButtonY, topButtonWidth, topButtonHeight);
+  //fill(0,0,255);
+  //rect(downloadButtonX, topButtonY, topButtonWidth, topButtonHeight);
+  //fill(quitButtonColor);
   //rect(quitButtonX, topButtonY, topButtonWidth, topButtonHeight);
   
  
@@ -175,18 +177,26 @@ void draw() {
   image(demoAlbumCover, albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight );
   
   settingIcon = loadImage("settingsIcon.png");
-  //image(settingIcon, settingsButtonX, topBarHeight*0, topBarHeight, topBarHeight);
+  image(settingIcon, settingsButtonX, topBarHeight*0, topBarHeight, topBarHeight);
   musicNoteIcon = loadImage("musicNoteIcon.png");
-  //image(musicNoteIcon, musicButtonX + topBarWidth*1/100, topButtonY, topButtonWidth, topButtonHeight);
+  image(musicNoteIcon, musicButtonX + topBarWidth*1/100, topButtonY, topButtonWidth, topButtonHeight);
   downloadIcon = loadImage("downloadIcon.png");
-  //image(downloadIcon, downloadButtonX + topBarWidth*3/100, topButtonY, topButtonWidth, topButtonHeight);
+  image(downloadIcon, downloadButtonX + topBarWidth*3/100, topButtonY, topButtonWidth, topButtonHeight);
   quitButtonIcon = loadImage("quitButtonIcon.png");
-  //more sevens would be more accurate but cmon man no one will see the difference at a certain point
-  image(quitButtonIcon, quitButtonX, topButtonY, topButtonWidth, topButtonHeight);
-  
-  //if(mouseX > 
+  //image(quitButtonIcon, quitButtonX, topButtonY, topButtonWidth, topButtonHeight);
   
   
+  //Checks if mouse is inside quit button
+  println(quitButtonX, topButtonY, topButtonWidth, topButtonHeight);
+  if(mouseX >= quitButtonX && mouseY >= topButtonY && mouseX <= topButtonWidth + quitButtonX && mouseY <= topButtonHeight + topButtonY ) {
+    quitButtonColor = color(255,0,0);
+  }
+  else{quitButtonColor = color(255,255,255);}
+  fill(quitButtonColor);
+  rect(quitButtonX, topButtonY, topButtonWidth, topButtonHeight);
+  
+    
+ 
   
 } //END DRAW
 
@@ -195,6 +205,7 @@ void keyPressed() {
 } //End keyPressed
 
 void mousePressed() {
+ 
 } //End mousePressed
 
 // End MAIN Program
