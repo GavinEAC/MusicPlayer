@@ -1,32 +1,17 @@
 //GLOBAL VARIABLES
 int appWidth, appHeight;
 
-//rect Variable declaration
-float backgroundX, backgroundY, backgroundWidth, backgroundHeight;
-
-//topBar Variables
-float topBarX, topBarY, topBarWidth, topBarHeight;
-
-//topBarButton Variables
-float topButtonY, topButtonWidth, topButtonHeight;
-float musicButtonX, settingsButtonX, downloadButtonX, quitButtonX;
-color quitButtonColor = color(255,255,255);
-
-//Panel variables
-float panelOneX, panelOneY, panelOneWidth, panelOneHeight;
-float panelTwoX, panelTwoY, panelTwoWidth, panelTwoHeight;
-float panelThreeX, panelThreeY, panelThreeWidth, panelThreeHeight;
-
-//panelOneContent Variable
-float albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight;
-float songTextX, songTextY, songTextWidth, songTextHeight;
-
 //image variable declaration
 PImage demoAlbumCover;
-
-//topBar buttons
 PImage settingIcon, musicNoteIcon, downloadIcon, quitButtonIcon;
 
+//
+//
+//
+//CLASS BEGINS
+//
+//
+//
 //Rect Class for convenience and fun
 class parentRect{
   int rectX = 0;
@@ -42,14 +27,14 @@ class parentRect{
     
 }
 
-  class Rect{
-    float rectX;
-    float rectY;
-    float rectWidth;
-    float rectHeight;
-    color rectColor;
-    Rect rectParent;
-    parentRect rectMainParent;
+class Rect{
+  float rectX;
+  float rectY;
+  float rectWidth;
+  float rectHeight;
+  color rectColor;
+  Rect rectParent;
+  parentRect rectMainParent;
   
   //CONSTRUCTOR FOR GRANDCHILDREN OF MAIN RECT AND ON
   Rect(Rect parent, String x, String y, String Width, String Height){
@@ -231,9 +216,15 @@ class parentRect{
   }
 }
 
+//
+//
+//
 //SETUP
+//
+//
+//
 void setup() {
-  //size(400, 500); //width, height
+  //size(400, 500); //width, height (non fullscreen is not supported in this version
   fullScreen(); //displayWidth, displayHeight
   appWidth = displayWidth;
   appHeight = displayHeight;
@@ -242,19 +233,49 @@ void setup() {
   String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "No, fix your device"; 
   println(displayInstructions);
   
-  //POPULATE RECTS
+  //Instantiate master background rect
+  parentRect backgroundRect = new parentRect();
   
-  //backgroundRect
-  backgroundX = appWidth*0;
-  backgroundY = appHeight*0;
-  backgroundWidth = appWidth;
-  backgroundHeight = appHeight;
+  Rect topBarRect = new Rect(backgroundRect, "0", "0", "%100", "%10");
+  topBarRect.rectColor = color(0,0,0);
+  topBarRect.drawRect();
   
-  //topBarRect
-  topBarX = appWidth*0;
-  topBarY = appHeight*0;
-  topBarWidth = appWidth;
-  topBarHeight = appHeight*1/10;
+  //Top Bar Button Rects
+  Rect settingsButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
+  settingsButtonRect.rectWidth = settingsButtonRect.rectHeight;
+  settingsButtonRect.drawRect();
+  
+  Rect musicButtonRect = new Rect(topBarRect, "%5", "0", "0", "%100");
+  musicButtonRect.rectColor = color(25,255,0);
+  musicButtonRect.rectWidth = musicButtonRect.rectHeight;
+  musicButtonRect.drawRect();
+  
+  Rect uploadButtonRect = new Rect(topBarRect, "%10", "0", "0", "%100");
+  uploadButtonRect.rectWidth = uploadButtonRect.rectHeight;
+  uploadButtonRect.drawRect();
+  
+  Rect quitButtonRect = new Rect(topBarRect, "%95", "0", "0", "%100");
+  quitButtonRect.rectWidth = quitButtonRect.rectHeight;
+  quitButtonRect.drawRect();
+  
+  
+  Rect panelOne = new Rect(backgroundRect, "0", "%10", "f1/4", "%90");
+  panelOne.rectColor = color(255,0,0);
+  panelOne.drawRect();
+  
+  Rect panelTwo = new Rect(backgroundRect, "f1/4", "%10", "f1/2", "%90");
+  panelTwo.rectColor = color(0,255,0);
+  panelTwo.drawRect();
+  
+  Rect panelThree = new Rect(backgroundRect, "f3/4", "%10", "f1/4", "%90");
+  panelThree.rectColor = color(0,0,255);
+  panelThree.drawRect();
+  
+  Rect albumCoverRect = new Rect(panelTwo, "%25", "%20", "%50", "%50");
+  albumCoverRect.drawRect();
+  
+  
+ /*
   
   //topBarButtonRects
   topButtonY = topBarHeight*0;
@@ -265,24 +286,6 @@ void setup() {
   downloadButtonX = topBarHeight*2;
   quitButtonX  = topBarHeight*17;
   
-  
-  //panelOneRect
-  panelOneX = appWidth*0;
-  panelOneY = appHeight*1/10;
-  panelOneWidth = appWidth*1/4;
-  panelOneHeight = appHeight*9/10;
-  
-  //panelTwoRect
-  panelTwoX = appWidth*1/4;
-  panelTwoY = appHeight*1/10;
-  panelTwoWidth = appWidth*2/4;
-  panelTwoHeight = appHeight*9/10;
-  
-  //panelThreeRect
-  panelThreeX = appWidth*3/4;
-  panelThreeY = appHeight*1/10;
-  panelThreeWidth = appWidth*1/4;
-  panelThreeHeight = appHeight*9/10;
   
   //albumCoverRect
   albumCoverX  = panelTwoWidth*1/4 + panelOneWidth;
@@ -296,51 +299,11 @@ void setup() {
   songTextWidth = panelTwoWidth*1/2;
   songTextHeight = panelTwoHeight*1/10;
   
+  */
   
-  //RENDER RECTS
-  //rect(X, Y, Width, Height)
-  rect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
   
-  //topBarRect
-  fill(255,255,255);
-  rect(topBarX, topBarY, topBarWidth, topBarHeight);
-  println(topBarWidth, topBarHeight);
   
-  //topBarButtonRect
-  //Uncomment to see real position of bar buttons
-  //fill(255,0,0);
-  //rect(settingsButtonX, topButtonY, topButtonWidth, topButtonHeight);
-  //fill(0,255,0);
-  //rect(musicButtonX, topButtonY, topButtonWidth, topButtonHeight);
-  //fill(0,0,255);
-  //rect(downloadButtonX, topButtonY, topButtonWidth, topButtonHeight);
-  //fill(quitButtonColor);
-  //rect(quitButtonX, topButtonY, topButtonWidth, topButtonHeight);
-  
- 
-  
-  //panelRects
-  fill(255,0,0);
-  rect(panelOneX, panelOneY, panelOneWidth, panelOneHeight);
-  
-  fill(0,255,0);
-  rect(panelTwoX, panelTwoY, panelTwoWidth, panelTwoHeight);
-  
-  fill(0,0,255);
-  rect(panelThreeX, panelThreeY, panelThreeWidth, panelThreeHeight);
-  
-  //albumCoverRect
-  strokeWeight(16);
-  stroke(50,50,50);
-  rect(albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
-  
-  strokeWeight(2);
-  stroke(0,0,0);
-  
-  //Uncomment if you need to see the space that the song info takes up
-  //fill(255,255,255);
-  //rect(songTextX, songTextY, songTextWidth, songTextHeight);
-  
+  /*
   String songName = "Song Name";
   int songNameSize = 24;
   String songArtist = "Artist Name";
@@ -357,6 +320,7 @@ void setup() {
   
   textSize(songArtistSize);
   text(songArtist, songTextX, songTextY + songNameSize + songArtistSize);
+  */
   
   
   
@@ -374,9 +338,15 @@ void setup() {
 
 
 
-
+//
+//
+//
 //DRAW
+//
+//
+//
 void draw() {
+  /*
   demoAlbumCover = loadImage("demoAlbumCover.jpg");
   image(demoAlbumCover, albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight );
   
@@ -398,6 +368,7 @@ void draw() {
   else{quitButtonColor = color(255,255,255);}
   fill(quitButtonColor);
   rect(quitButtonX, topButtonY, topButtonWidth, topButtonHeight);
+  */
   
     
  
