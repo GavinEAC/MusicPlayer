@@ -214,6 +214,11 @@ class Rect{
     fill(rectColor);
     rect(rectX, rectY, rectWidth, rectHeight);
   }
+  
+  void drawImage(String imageAdress){
+    PImage image = loadImage(imageAdress);
+    image(image, rectX, rectY, rectWidth, rectHeight);
+  }
 }
 
 //
@@ -237,26 +242,33 @@ void setup() {
   parentRect backgroundRect = new parentRect();
   
   Rect topBarRect = new Rect(backgroundRect, "0", "0", "%100", "%10");
-  topBarRect.rectColor = color(0,0,0);
+  topBarRect.rectColor = color(255,255,255);
   topBarRect.drawRect();
   
   //Top Bar Button Rects
   Rect settingsButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
   settingsButtonRect.rectWidth = settingsButtonRect.rectHeight;
-  settingsButtonRect.drawRect();
+  //settingsButtonRect.drawRect();
+  settingsButtonRect.drawImage("settingsIcon.png");
   
-  Rect musicButtonRect = new Rect(topBarRect, "%5", "0", "0", "%100");
+  Rect musicButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
   musicButtonRect.rectColor = color(25,255,0);
+  musicButtonRect.rectX = musicButtonRect.rectParent.rectHeight;
   musicButtonRect.rectWidth = musicButtonRect.rectHeight;
-  musicButtonRect.drawRect();
+  //musicButtonRect.drawRect();
+  musicButtonRect.drawImage("musicNoteIcon.png");
   
-  Rect uploadButtonRect = new Rect(topBarRect, "%10", "0", "0", "%100");
-  uploadButtonRect.rectWidth = uploadButtonRect.rectHeight;
-  uploadButtonRect.drawRect();
+  Rect downloadButtonRect = new Rect(topBarRect, "%10", "0", "0", "%100");
+  downloadButtonRect.rectX = downloadButtonRect.rectParent.rectHeight * 2 + 5;
+  downloadButtonRect.rectWidth = downloadButtonRect.rectHeight;
+  //uploadButtonRect.drawRect();
+  downloadButtonRect.drawImage("downloadIcon.png");
   
   Rect quitButtonRect = new Rect(topBarRect, "%95", "0", "0", "%100");
+  quitButtonRect.rectX = quitButtonRect.rectParent.rectWidth - quitButtonRect.rectParent.rectHeight;
   quitButtonRect.rectWidth = quitButtonRect.rectHeight;
-  quitButtonRect.drawRect();
+  //quitButtonRect.drawRect();
+  quitButtonRect.drawImage("quitButtonIcon.png");
   
   
   Rect panelOne = new Rect(backgroundRect, "0", "%10", "f1/4", "%90");
@@ -272,38 +284,13 @@ void setup() {
   panelThree.drawRect();
   
   Rect albumCoverRect = new Rect(panelTwo, "%25", "%20", "%50", "%50");
-  albumCoverRect.drawRect();
+  //albumCoverRect.drawRect();
+  albumCoverRect.drawImage("demoAlbumCover.jpg");
+  
+  Rect songTextRect = new Rect(panelTwo, "%25", "%69", "%50", "%10");
+  songTextRect.drawRect();
   
   
- /*
-  
-  //topBarButtonRects
-  topButtonY = topBarHeight*0;
-  topButtonWidth = topBarHeight;
-  topButtonHeight = topBarHeight;
-  settingsButtonX = topBarHeight*0;
-  musicButtonX = topBarHeight*1;
-  downloadButtonX = topBarHeight*2;
-  quitButtonX  = topBarHeight*17;
-  
-  
-  //albumCoverRect
-  albumCoverX  = panelTwoWidth*1/4 + panelOneWidth;
-  albumCoverY =  panelTwoHeight*1/10 + topBarHeight;
-  albumCoverWidth = panelTwoWidth*2/4;
-  albumCoverHeight = panelTwoHeight*5/10;
-  
-  //songTextRect
-  songTextX = panelTwoWidth*1/4 + panelOneWidth;
-  songTextY = panelTwoHeight*6.5/10 + topBarHeight;
-  songTextWidth = panelTwoWidth*1/2;
-  songTextHeight = panelTwoHeight*1/10;
-  
-  */
-  
-  
-  
-  /*
   String songName = "Song Name";
   int songNameSize = 24;
   String songArtist = "Artist Name";
@@ -312,27 +299,14 @@ void setup() {
   int songDurationSize = 12;
   fill(0,0,0);
   textSize(songNameSize);
-  text(songName, songTextX, songTextY + songNameSize);
+  text(songName, songTextRect.rectX, songTextRect.rectY + songNameSize);
   
   textSize(songDurationSize);
-  text(songDuration, songTextX + textWidth(songName)*2.1, songTextY + songNameSize);
+  text(songDuration, songTextRect.rectX + textWidth(songName)*2.1, songTextRect.rectY + songNameSize);
   println(textWidth(songName));
   
   textSize(songArtistSize);
-  text(songArtist, songTextX, songTextY + songNameSize + songArtistSize);
-  */
-  
-  
-  
-  /* unused rects
-  rect(panelX, panelY, panelWidth, panelHeight);
-  rect(X, Y, Width, Height);
-  rect(X, Y, Width, Height);
-  rect(X, Y, Width, Height);
-  rect(X, Y, Width, Height);
-  rect(X, Y, Width, Height);
-  rect(X, Y, Width, Height);
-  */
+  text(songArtist, songTextRect.rectX, songTextRect.rectY + songNameSize + songArtistSize);
 } //END SETUP
 
 
@@ -350,28 +324,16 @@ void draw() {
   demoAlbumCover = loadImage("demoAlbumCover.jpg");
   image(demoAlbumCover, albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight );
   
-  settingIcon = loadImage("settingsIcon.png");
-  image(settingIcon, settingsButtonX, topBarHeight*0, topBarHeight, topBarHeight);
-  musicNoteIcon = loadImage("musicNoteIcon.png");
-  image(musicNoteIcon, musicButtonX + topBarWidth*1/100, topButtonY, topButtonWidth, topButtonHeight);
-  downloadIcon = loadImage("downloadIcon.png");
-  image(downloadIcon, downloadButtonX + topBarWidth*3/100, topButtonY, topButtonWidth, topButtonHeight);
-  quitButtonIcon = loadImage("quitButtonIcon.png");
-  //image(quitButtonIcon, quitButtonX, topButtonY, topButtonWidth, topButtonHeight);
+ 
   
   
-  //Checks if mouse is inside quit button
-  println(quitButtonX, topButtonY, topButtonWidth, topButtonHeight);
+ 
+ 
   if(mouseX >= quitButtonX && mouseY >= topButtonY && mouseX <= topButtonWidth + quitButtonX && mouseY <= topButtonHeight + topButtonY ) {
-    quitButtonColor = color(255,0,0);
-  }
-  else{quitButtonColor = color(255,255,255);}
-  fill(quitButtonColor);
-  rect(quitButtonX, topButtonY, topButtonWidth, topButtonHeight);
-  */
+   
   
     
- 
+ */
   
 } //END DRAW
 
