@@ -12,7 +12,7 @@ class parentRect{
     
 }
 
-public class Rect{
+class Rect{
   float rectX;
   float rectY;
   float rectWidth;
@@ -25,10 +25,13 @@ public class Rect{
   Rect(Rect parent, String x, String y, String Width, String Height){
     //establishes parent rect
     rectParent = parent;
-      if( x.contains("%") == true) {
+    
+    
+    //Mananges x,y,height,width
+    if( x.contains("%") == true) {
       float percentValue = Integer.parseInt(x.substring(1));
       percentValue = percentValue/100;
-      rectX = percentValue * parent.rectWidth;
+      rectX = (percentValue * parent.rectWidth) + parent.rectX;
     }
     else if( x.contains("f") == true){
       String stringFractionValue = x.substring(1);
@@ -36,16 +39,16 @@ public class Rect{
       float numerator = Integer.parseInt(indFractionValues[0]);
       float denominator = Integer.parseInt(indFractionValues[1]);
       float floatFractionValue = numerator / denominator;
-      rectX = floatFractionValue * parent.rectWidth;
+      rectX = (floatFractionValue * parent.rectWidth) + parent.rectX;
     }
     else{
-      rectX = Integer.parseInt(x);
+      rectX = (Integer.parseInt(x) * parent.rectWidth) + parent.rectX;
     }
     
     if( y.contains("%") == true) {
       float percentValue = Integer.parseInt(y.substring(1));
       percentValue = percentValue/100;
-      rectY = percentValue * parent.rectHeight;
+      rectY = (percentValue * parent.rectHeight) + parent.rectY;
     }
     else if( y.contains("f") == true){
       String stringFractionValue = y.substring(1);
@@ -53,10 +56,10 @@ public class Rect{
       float numerator = Integer.parseInt(indFractionValues[0]);
       float denominator = Integer.parseInt(indFractionValues[1]);
       float floatFractionValue = numerator / denominator;
-      rectY= floatFractionValue * parent.rectHeight;
+      rectY= (floatFractionValue * parent.rectHeight) + parent.rectY;
     }
     else{
-      rectY = Integer.parseInt(y);
+      rectY = (Integer.parseInt(y) * parent.rectHeight) + parent.rectY;
     }
    
     if( Width.contains("%") == true) {
@@ -70,7 +73,6 @@ public class Rect{
       float numerator = Integer.parseInt(indFractionValues[0]);
       float denominator = Integer.parseInt(indFractionValues[1]);
       float floatFractionValue = numerator / denominator;
-      println(floatFractionValue);
       rectWidth = floatFractionValue * parent.rectWidth;
     }
     else{
@@ -88,24 +90,28 @@ public class Rect{
       float numerator = Integer.parseInt(indFractionValues[0]);
       float denominator = Integer.parseInt(indFractionValues[1]);
       float floatFractionValue = numerator / denominator;
-      rectHeight = floatFractionValue * parent.rectHeight;
+      rectHeight= floatFractionValue * parent.rectHeight;
     }
     else{
       rectHeight = Integer.parseInt(Height);
     }
+    
+    //defaulted settings of a rect object
+    rectColor = color(255,255,255);
+    
   }
-    
-    
-    
-    
-    
-    
-  
-  
+  //
+  //
+  //
+  //CONSTRUCTOR FOR RECTS THAT BELONG TO MAIN RECT
+  //
+  //
+  //
   Rect(parentRect parent, String x, String y, String Width, String Height){
     
     rectMainParent = parent;
-      if( x.contains("%") == true) {
+    
+    if( x.contains("%") == true) {
       float percentValue = Integer.parseInt(x.substring(1));
       percentValue = percentValue/100;
       rectX = percentValue * parent.rectWidth;
@@ -172,12 +178,27 @@ public class Rect{
     }
     else{
       rectHeight = Integer.parseInt(Height);
-    }
+   }
+    
+    //defaulted settings of a rect object
+    rectColor = color(255,255,255);
+    
   }
+  
   //draws rect starting from center. x,y is postiioned in center of rect
   void centralDrawMode(){
     rectX = rectX - (rectWidth/2);
     rectY = rectY - (rectHeight/2);
+  }
+  
+  boolean isClicked(){
+    if(mouseX >= rectX && mouseX <= rectWidth + rectX && mouseY >= rectY && mouseY <= rectY + rectHeight){
+      println("True");
+      return true;
+    }
+    else{
+      return false;
+    }
   }
     
   void printArgs(){
@@ -193,11 +214,6 @@ public class Rect{
     PImage image = loadImage(imageAdress);
     image(image, rectX, rectY, rectWidth, rectHeight);
   }
-  
-  void isClicked(){
-    if(mouseX >= rectX && mouseY >= rectY && mouseX <= rectWidth + rectX && mouseY <= rectHeight + rectY){
-      println("hovering on");
-    }
-  }
-  
 }
+
+ 

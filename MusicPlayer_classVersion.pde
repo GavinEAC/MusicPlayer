@@ -4,6 +4,18 @@ int appWidth, appHeight;
 //image variable declaration
 PImage demoAlbumCover;
 PImage settingIcon, musicNoteIcon, downloadIcon, quitButtonIcon;
+parentRect backgroundRect;
+Rect topBarRect;
+Rect quitButtonRect;
+Rect panelOne;
+Rect panelTwo;
+Rect panelThree;
+Rect albumCoverRect;
+Rect songTextRect;
+
+
+
+
 
 
 //SETUP
@@ -18,38 +30,41 @@ void setup() {
   println(displayInstructions);
   
   //Instantiate master background rect
-  parentRect backgroundRect = new parentRect();
+  backgroundRect = new parentRect();
+  topBarRect = new Rect(backgroundRect, "0", "0", "%100", "%10");
   
+  Rect quitButtonRect = new Rect(topBarRect, "%95", "0", "0", "%100");
+  
+  quitButtonRect.rectX = quitButtonRect.rectParent.rectWidth - quitButtonRect.rectParent.rectHeight;
+  quitButtonRect.rectWidth = quitButtonRect.rectHeight;
+  quitButtonRect.rectColor = color(0,255,0);
+  
+  panelOne = new Rect(backgroundRect, "0", "%10", "f1/4", "%90");
+  
+  panelTwo = new Rect(backgroundRect, "f1/4", "%10", "f1/2", "%90");
+  
+  panelThree = new Rect(backgroundRect, "f3/4", "%10", "f1/4", "%90");
+  
+  albumCoverRect = new Rect(panelTwo, "%25", "%20", "%50", "%50");
+  
+  songTextRect = new Rect(panelTwo, "%25", "f697/1000", "%50", "%10");
+
   //Instantiate Rects
-  Rect topBarRect = new Rect(backgroundRect, "0", "0", "%100", "%10");
+  
   topBarRect.rectColor = color(255,255,255);
-  
-  Rect panelOne = new Rect(backgroundRect, "0", "%10", "f1/4", "%90");
   panelOne.rectColor = color(255,0,0);
-  
-  Rect panelTwo = new Rect(backgroundRect, "f1/4", "%10", "f1/2", "%90");
   panelTwo.rectColor = color(0,255,0);
-  
-  Rect panelThree = new Rect(backgroundRect, "f3/4", "%10", "f1/4", "%90");
   panelThree.rectColor = color(0,0,255);
-  
-  Rect albumCoverRect = new Rect(panelTwo, "%25", "%20", "%50", "%50");
   albumCoverRect.rectColor = color(255,255,255);
-   
-  Rect songTextRect = new Rect(panelTwo, "%25", "%69", "%50", "%10");
   songTextRect.rectColor = color(255,255,255);
   
   topBarRect.drawRect();
+  quitButtonRect.drawRect();
   panelOne.drawRect();
   panelTwo.drawRect();
   panelThree.drawRect();
-  albumCoverRect.drawRect();
+  albumCoverRect.drawImage("demoAlbumCover.jpg");
   songTextRect.drawRect();
-  topBarRect.rectColor = color(255,255,255);
-  panelOne.rectColor = color(255,0,0);
-  panelTwo.rectColor = color(0,255,0);
-  panelThree.rectColor = color(0,0,255);
-  
   
   
   String songName = "Song Name";
@@ -75,12 +90,10 @@ void setup() {
 
 
 //DRAW
-
-//
-//
 void draw() {
-  //quitButtonRect.isClicked();
-  
+  if(quitButtonRect.isClicked() == true){
+    quitButtonRect.rectColor = color(255,0,0);
+  }
 } //END DRAW
 
 
