@@ -1,0 +1,203 @@
+class parentRect{
+  int rectX = 0;
+  int rectY = 0;
+  int rectWidth = displayWidth;
+  int rectHeight = displayHeight;
+
+  parentRect(){
+    noFill();
+    noStroke();
+    rect(rectX, rectY, rectWidth, rectHeight);
+  }
+    
+}
+
+public class Rect{
+  float rectX;
+  float rectY;
+  float rectWidth;
+  float rectHeight;
+  color rectColor;
+  Rect rectParent;
+  parentRect rectMainParent;
+  
+  //CONSTRUCTOR FOR GRANDCHILDREN OF MAIN RECT AND ON
+  Rect(Rect parent, String x, String y, String Width, String Height){
+    //establishes parent rect
+    rectParent = parent;
+      if( x.contains("%") == true) {
+      float percentValue = Integer.parseInt(x.substring(1));
+      percentValue = percentValue/100;
+      rectX = percentValue * parent.rectWidth;
+    }
+    else if( x.contains("f") == true){
+      String stringFractionValue = x.substring(1);
+      String[] indFractionValues = stringFractionValue.split("/");
+      float numerator = Integer.parseInt(indFractionValues[0]);
+      float denominator = Integer.parseInt(indFractionValues[1]);
+      float floatFractionValue = numerator / denominator;
+      rectX = floatFractionValue * parent.rectWidth;
+    }
+    else{
+      rectX = Integer.parseInt(x);
+    }
+    
+    if( y.contains("%") == true) {
+      float percentValue = Integer.parseInt(y.substring(1));
+      percentValue = percentValue/100;
+      rectY = percentValue * parent.rectHeight;
+    }
+    else if( y.contains("f") == true){
+      String stringFractionValue = y.substring(1);
+      String[] indFractionValues = stringFractionValue.split("/");
+      float numerator = Integer.parseInt(indFractionValues[0]);
+      float denominator = Integer.parseInt(indFractionValues[1]);
+      float floatFractionValue = numerator / denominator;
+      rectY= floatFractionValue * parent.rectHeight;
+    }
+    else{
+      rectY = Integer.parseInt(y);
+    }
+   
+    if( Width.contains("%") == true) {
+      float percentValue = Integer.parseInt(Width.substring(1));
+      percentValue = percentValue/100;
+      rectWidth = percentValue * parent.rectWidth;
+    }
+    else if( Width.contains("f") == true){
+      String stringFractionValue = Width.substring(1);
+      String[] indFractionValues = stringFractionValue.split("/");
+      float numerator = Integer.parseInt(indFractionValues[0]);
+      float denominator = Integer.parseInt(indFractionValues[1]);
+      float floatFractionValue = numerator / denominator;
+      println(floatFractionValue);
+      rectWidth = floatFractionValue * parent.rectWidth;
+    }
+    else{
+      rectWidth = Integer.parseInt(Width);
+    }
+    
+    if( Height.contains("%") == true) {
+      float percentValue = Integer.parseInt(Height.substring(1));
+      percentValue = percentValue/100;
+      rectHeight = percentValue * parent.rectHeight;
+    }
+    else if( Height.contains("f") == true){
+      String stringFractionValue = Height.substring(1);
+      String[] indFractionValues = stringFractionValue.split("/");
+      float numerator = Integer.parseInt(indFractionValues[0]);
+      float denominator = Integer.parseInt(indFractionValues[1]);
+      float floatFractionValue = numerator / denominator;
+      rectHeight = floatFractionValue * parent.rectHeight;
+    }
+    else{
+      rectHeight = Integer.parseInt(Height);
+    }
+  }
+    
+    
+    
+    
+    
+    
+  
+  
+  Rect(parentRect parent, String x, String y, String Width, String Height){
+    
+    rectMainParent = parent;
+      if( x.contains("%") == true) {
+      float percentValue = Integer.parseInt(x.substring(1));
+      percentValue = percentValue/100;
+      rectX = percentValue * parent.rectWidth;
+    }
+    else if( x.contains("f") == true){
+      String stringFractionValue = x.substring(1);
+      String[] indFractionValues = stringFractionValue.split("/");
+      float numerator = Integer.parseInt(indFractionValues[0]);
+      float denominator = Integer.parseInt(indFractionValues[1]);
+      float floatFractionValue = numerator / denominator;
+      rectX = floatFractionValue * parent.rectWidth;
+    }
+    else{
+      rectX = Integer.parseInt(x);
+    }
+    
+    if( y.contains("%") == true) {
+      float percentValue = Integer.parseInt(y.substring(1));
+      percentValue = percentValue/100;
+      rectY = percentValue * parent.rectHeight;
+    }
+    else if( y.contains("f") == true){
+      String stringFractionValue = y.substring(1);
+      String[] indFractionValues = stringFractionValue.split("/");
+      float numerator = Integer.parseInt(indFractionValues[0]);
+      float denominator = Integer.parseInt(indFractionValues[1]);
+      float floatFractionValue = numerator / denominator;
+      rectY= floatFractionValue * parent.rectHeight;
+    }
+    else{
+      rectY = Integer.parseInt(y);
+    }
+   
+    if( Width.contains("%") == true) {
+      float percentValue = Integer.parseInt(Width.substring(1));
+      percentValue = percentValue/100;
+      rectWidth = percentValue * parent.rectWidth;
+    }
+    else if( Width.contains("f") == true){
+      String stringFractionValue = Width.substring(1);
+      String[] indFractionValues = stringFractionValue.split("/");
+      float numerator = Integer.parseInt(indFractionValues[0]);
+      float denominator = Integer.parseInt(indFractionValues[1]);
+      float floatFractionValue = numerator / denominator;
+      println(floatFractionValue);
+      rectWidth = floatFractionValue * parent.rectWidth;
+    }
+    else{
+      rectWidth = Integer.parseInt(Width);
+    }
+    
+    if( Height.contains("%") == true) {
+      float percentValue = Integer.parseInt(Height.substring(1));
+      percentValue = percentValue/100;
+      rectHeight = percentValue * parent.rectHeight;
+    }
+    else if( Height.contains("f") == true){
+      String stringFractionValue = Height.substring(1);
+      String[] indFractionValues = stringFractionValue.split("/");
+      float numerator = Integer.parseInt(indFractionValues[0]);
+      float denominator = Integer.parseInt(indFractionValues[1]);
+      float floatFractionValue = numerator / denominator;
+      rectHeight = floatFractionValue * parent.rectHeight;
+    }
+    else{
+      rectHeight = Integer.parseInt(Height);
+    }
+  }
+  //draws rect starting from center. x,y is postiioned in center of rect
+  void centralDrawMode(){
+    rectX = rectX - (rectWidth/2);
+    rectY = rectY - (rectHeight/2);
+  }
+    
+  void printArgs(){
+    println(rectX, rectY, rectWidth, rectHeight);
+  }
+  
+  void drawRect(){
+    fill(rectColor);
+    rect(rectX, rectY, rectWidth, rectHeight);
+  }
+  
+  void drawImage(String imageAdress){
+    PImage image = loadImage(imageAdress);
+    image(image, rectX, rectY, rectWidth, rectHeight);
+  }
+  
+  void isClicked(){
+    if(mouseX >= rectX && mouseY >= rectY && mouseX <= rectWidth + rectX && mouseY <= rectHeight + rectY){
+      println("hovering on");
+    }
+  }
+  
+}
