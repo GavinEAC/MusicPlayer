@@ -156,7 +156,6 @@ class Rect{
       float numerator = Integer.parseInt(indFractionValues[0]);
       float denominator = Integer.parseInt(indFractionValues[1]);
       float floatFractionValue = numerator / denominator;
-      println(floatFractionValue);
       rectWidth = floatFractionValue * parent.rectWidth;
     }
     else{
@@ -191,9 +190,8 @@ class Rect{
     rectY = rectY - (rectHeight/2);
   }
   
-  boolean isClicked(){
+  boolean isHovering(){
     if(mouseX >= rectX && mouseX <= rectWidth + rectX && mouseY >= rectY && mouseY <= rectY + rectHeight){
-      println("True");
       return true;
     }
     else{

@@ -33,7 +33,7 @@ void setup() {
   backgroundRect = new parentRect();
   topBarRect = new Rect(backgroundRect, "0", "0", "%100", "%10");
   
-  Rect quitButtonRect = new Rect(topBarRect, "%95", "0", "0", "%100");
+  quitButtonRect = new Rect(topBarRect, "%95", "0", "0", "%100");
   
   quitButtonRect.rectX = quitButtonRect.rectParent.rectWidth - quitButtonRect.rectParent.rectHeight;
   quitButtonRect.rectWidth = quitButtonRect.rectHeight;
@@ -79,7 +79,6 @@ void setup() {
   
   textSize(songDurationSize);
   text(songDuration, songTextRect.rectX + textWidth(songName)*2.1, songTextRect.rectY + songNameSize);
-  println(textWidth(songName));
   
   textSize(songArtistSize);
   text(songArtist, songTextRect.rectX, songTextRect.rectY + songNameSize + songArtistSize);
@@ -91,8 +90,13 @@ void setup() {
 
 //DRAW
 void draw() {
-  if(quitButtonRect.isClicked() == true){
+  if(quitButtonRect.isHovering() == true){
     quitButtonRect.rectColor = color(255,0,0);
+    quitButtonRect.drawRect();
+  }
+  else{
+    quitButtonRect.rectColor = color(0,255,0);
+    quitButtonRect.drawRect();
   }
 } //END DRAW
 
