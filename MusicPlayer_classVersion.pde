@@ -6,6 +6,9 @@ PImage demoAlbumCover;
 PImage settingIcon, musicNoteIcon, downloadIcon, quitButtonIcon;
 parentRect backgroundRect;
 Rect topBarRect;
+Rect settingsButtonRect;
+Rect musicButtonRect;
+Rect uploadButtonRect;
 Rect quitButtonRect;
 Rect panelOne;
 Rect panelTwo;
@@ -33,8 +36,21 @@ void setup() {
   backgroundRect = new parentRect();
   topBarRect = new Rect(backgroundRect, "0", "0", "%100", "%10");
   
-  quitButtonRect = new Rect(topBarRect, "%95", "0", "0", "%100");
+  settingsButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
+  settingsButtonRect.rectWidth = settingsButtonRect.rectHeight;
+  settingsButtonRect.rectColor = color(255,0,0);
   
+  musicButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
+  musicButtonRect.rectX = musicButtonRect.rectParent.rectHeight * 1;
+  musicButtonRect.rectWidth = musicButtonRect.rectHeight;
+  musicButtonRect.rectColor = color(0,255,0);
+  
+  uploadButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
+  uploadButtonRect.rectX = uploadButtonRect.rectHeight * 2;
+  uploadButtonRect.rectWidth = uploadButtonRect.rectHeight;
+  uploadButtonRect.rectColor = color(0,0,255);
+  
+  quitButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
   quitButtonRect.rectX = quitButtonRect.rectParent.rectWidth - quitButtonRect.rectParent.rectHeight;
   quitButtonRect.rectWidth = quitButtonRect.rectHeight;
   quitButtonRect.rectColor = color(0,255,0);
@@ -60,11 +76,18 @@ void setup() {
   
   topBarRect.drawRect();
   quitButtonRect.drawRect();
+  quitButtonRect.drawImage("quitButtonIcon.png");
   panelOne.drawRect();
   panelTwo.drawRect();
   panelThree.drawRect();
   albumCoverRect.drawImage("demoAlbumCover.jpg");
   songTextRect.drawRect();
+  settingsButtonRect.drawRect();
+  settingsButtonRect.drawImage("settingsIcon.png");
+  musicButtonRect.drawRect();
+  musicButtonRect.drawImage("musicNoteIcon.png");
+  uploadButtonRect.drawRect();
+  uploadButtonRect.drawImage("downloadIcon.png");
   
   
   String songName = "Song Name";
@@ -90,14 +113,10 @@ void setup() {
 
 //DRAW
 void draw() {
-  if(quitButtonRect.isHovering() == true){
-    quitButtonRect.rectColor = color(255,0,0);
-    quitButtonRect.drawRect();
-  }
-  else{
-    quitButtonRect.rectColor = color(0,255,0);
-    quitButtonRect.drawRect();
-  }
+  quitButtonRect.hoverColor(0,255, "quitButtonIcon.png");
+  //quitButtonRect.drawImage("quitButtonIcon.png");
+  settingsButtonRect.hoverColor(0,255, "settingsIcon.png");
+  //settingsButtonRect.drawImage("settingsIcon.png");
 } //END DRAW
 
 
@@ -105,7 +124,11 @@ void keyPressed() {
 } //End keyPressed
 
 void mousePressed() {
- 
+  //println("mouse clicked");
+  if(quitButtonRect.isHovering() == true){
+    println("quit button has been clicked");
+    System.exit(0);
+  }
 } //End mousePressed
 
 // End MAIN Program
