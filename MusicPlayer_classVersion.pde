@@ -2,6 +2,7 @@
 int appWidth, appHeight;
 
 //image variable declaration
+PFont assets;
 PImage demoAlbumCover;
 PImage settingIcon, musicNoteIcon, downloadIcon, quitButtonIcon;
 parentRect backgroundRect;
@@ -76,7 +77,7 @@ void setup() {
   
   topBarRect.drawRect();
   quitButtonRect.drawRect();
-  quitButtonRect.drawImage("quitButtonIcon.png");
+  //quitButtonRect.drawImage("quitButtonIcon.png");
   panelOne.drawRect();
   panelTwo.drawRect();
   panelThree.drawRect();
@@ -105,6 +106,13 @@ void setup() {
   
   textSize(songArtistSize);
   text(songArtist, songTextRect.rectX, songTextRect.rectY + songNameSize + songArtistSize);
+  
+  assets = loadFont("SegoeMDL2Assets-48.vlw");
+  
+  textFont(assets);
+  textSize(72);
+  textAlign(CENTER, CENTER);
+  text("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2);
 } //END SETUP
 
 
@@ -113,10 +121,16 @@ void setup() {
 
 //DRAW
 void draw() {
-  quitButtonRect.hoverColor(0,255, "quitButtonIcon.png");
-  //quitButtonRect.drawImage("quitButtonIcon.png");
-  settingsButtonRect.hoverColor(0,255, "settingsIcon.png");
-  //settingsButtonRect.drawImage("settingsIcon.png");
+  /*
+  if(quitButtonRect.isHovering() == true){
+    quitButtonRect.rectColor = color(255,0,0);
+    quitButtonRect.drawRect();
+    text("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2);
+  }
+  */
+  
+  
+  
 } //END DRAW
 
 

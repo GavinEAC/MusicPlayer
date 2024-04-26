@@ -198,18 +198,6 @@ class Rect{
       return false;
     }
   }
-  
-  void hoverColor(color hoverColor, color nonHoverColor, String imageAdress){
-    if(isHovering() == true){
-      rectColor = hoverColor;
-      //drawImage(imageAdress);
-      drawRect();
-    }
-    else{
-      rectColor = nonHoverColor;
-      drawRect();
-    }
-  }
     
   void printArgs(){
     println(rectX, rectY, rectWidth, rectHeight);
