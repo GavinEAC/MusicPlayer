@@ -39,7 +39,6 @@ void setup() {
   
   settingsButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
   settingsButtonRect.rectWidth = settingsButtonRect.rectHeight;
-  settingsButtonRect.rectColor = color(255,0,0);
   
   musicButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
   musicButtonRect.rectX = musicButtonRect.rectParent.rectHeight * 1;
@@ -54,7 +53,7 @@ void setup() {
   quitButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
   quitButtonRect.rectX = quitButtonRect.rectParent.rectWidth - quitButtonRect.rectParent.rectHeight;
   quitButtonRect.rectWidth = quitButtonRect.rectHeight;
-  quitButtonRect.rectColor = color(0,255,0);
+  
   
   panelOne = new Rect(backgroundRect, "0", "%10", "f1/4", "%90");
   
@@ -108,11 +107,14 @@ void setup() {
   text(songArtist, songTextRect.rectX, songTextRect.rectY + songNameSize + songArtistSize);
   
   assets = loadFont("SegoeMDL2Assets-48.vlw");
-  
+  /*
   textFont(assets);
   textSize(72);
   textAlign(CENTER, CENTER);
   text("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2);
+  */
+  printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2);
+  
 } //END SETUP
 
 
@@ -121,14 +123,50 @@ void setup() {
 
 //DRAW
 void draw() {
-  /*
+  
   if(quitButtonRect.isHovering() == true){
     quitButtonRect.rectColor = color(255,0,0);
     quitButtonRect.drawRect();
-    text("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2);
+    printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2);
   }
-  */
+  else{
+    quitButtonRect.rectColor = color(255,255,255);
+    quitButtonRect.drawRect();
+    printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2);
+  }
   
+  if(settingsButtonRect.isHovering() == true){
+    settingsButtonRect.rectColor = color(255,0,0);
+    settingsButtonRect.drawRect();
+    printAsset("\uE713", (settingsButtonRect.rectX + settingsButtonRect.rectWidth / 2), (settingsButtonRect.rectY + settingsButtonRect.rectHeight) / 2);
+  }
+  else{
+    settingsButtonRect.rectColor = color(255,255,255);
+    settingsButtonRect.drawRect();
+    printAsset("\uE713", (settingsButtonRect.rectX + settingsButtonRect.rectWidth / 2), (settingsButtonRect.rectY + settingsButtonRect.rectHeight) / 2);
+  }
+  
+  if(musicButtonRect.isHovering() == true){
+    musicButtonRect.rectColor = color(255,0,0);
+    musicButtonRect.drawRect();
+    printAsset("\uEC4F", (musicButtonRect.rectX + musicButtonRect.rectWidth / 2), (musicButtonRect.rectY + musicButtonRect.rectHeight) / 2);
+  }
+  else{
+    musicButtonRect.rectColor = color(255,255,255);
+    musicButtonRect.drawRect();
+    printAsset("\uEC4F", (musicButtonRect.rectX + musicButtonRect.rectWidth / 2), (musicButtonRect.rectY + musicButtonRect.rectHeight) / 2);
+  }
+  
+  if(uploadButtonRect.isHovering() == true){
+    uploadButtonRect.rectColor = color(255,0,0);
+    uploadButtonRect.drawRect();
+    printAsset("\uE898", (uploadButtonRect.rectX + uploadButtonRect.rectWidth / 2), (uploadButtonRect.rectY + uploadButtonRect.rectHeight) / 2);
+  }
+  else{
+     uploadButtonRect.rectColor = color(255,255,255);
+    uploadButtonRect.drawRect();
+    printAsset("\uE898", (uploadButtonRect.rectX + uploadButtonRect.rectWidth / 2), (uploadButtonRect.rectY + uploadButtonRect.rectHeight) / 2);
+  }
   
   
 } //END DRAW
