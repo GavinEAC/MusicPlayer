@@ -112,11 +112,11 @@ void setup() {
   
   assets = loadFont("SegoeMDL2Assets-48.vlw");
  
-  /*
+  
   minim = new Minim(this);
   song = minim.loadFile("song.mp3");
   song.play();
-  */
+  
   
 } //END SETUP
 
