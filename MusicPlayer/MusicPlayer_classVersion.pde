@@ -19,12 +19,12 @@ Rect uploadButtonRect;
 Rect quitButtonRect;
 Rect panelOne;
 Rect panelTwo;
+Rect playButton;
 Rect panelThree;
 Rect albumCoverRect;
 Rect songTextRect;
 
-
-
+String currentSong;
 
 
 
@@ -67,6 +67,8 @@ void setup() {
   
   panelTwo = new Rect(backgroundRect, "f1/4", "%10", "f1/2", "%90");
   
+  playButton = new Rect(panelTwo, "%50", "%90", "%10", "0");
+  
   panelThree = new Rect(backgroundRect, "f3/4", "%10", "f1/4", "%90");
   
   albumCoverRect = new Rect(panelTwo, "%25", "%20", "%50", "%50");
@@ -92,6 +94,7 @@ void setup() {
   settingsButtonRect.drawRect();
   musicButtonRect.drawRect();
   uploadButtonRect.drawRect();
+  playButton.drawCircle();
   
   
   String songName = "Song Name";
@@ -112,10 +115,12 @@ void setup() {
   
   assets = loadFont("SegoeMDL2Assets-48.vlw");
  
-  
+  String currentSong = "song.mp3";
   minim = new Minim(this);
-  song = minim.loadFile("song.mp3");
+  song = minim.loadFile(currentSong);
   song.play();
+  
+  circle(100,100,100);
   
   
 } //END SETUP
@@ -130,46 +135,68 @@ void draw() {
   if(quitButtonRect.isHovering() == true){
     quitButtonRect.rectColor = color(255,0,0);
     quitButtonRect.drawRect();
-    printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2);
+    printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2, 72);
   }
   else{
     quitButtonRect.rectColor = color(255,255,255);
     quitButtonRect.drawRect();
-    printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2);
+    printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2, 72);
   }
   
   if(settingsButtonRect.isHovering() == true){
     settingsButtonRect.rectColor = color(255,0,0);
     settingsButtonRect.drawRect();
-    printAsset("\uE713", (settingsButtonRect.rectX + settingsButtonRect.rectWidth / 2), (settingsButtonRect.rectY + settingsButtonRect.rectHeight) / 2);
+    printAsset("\uE713", (settingsButtonRect.rectX + settingsButtonRect.rectWidth / 2), (settingsButtonRect.rectY + settingsButtonRect.rectHeight) / 2, 72);
   }
   else{
     settingsButtonRect.rectColor = color(255,255,255);
     settingsButtonRect.drawRect();
-    printAsset("\uE713", (settingsButtonRect.rectX + settingsButtonRect.rectWidth / 2), (settingsButtonRect.rectY + settingsButtonRect.rectHeight) / 2);
+    printAsset("\uE713", (settingsButtonRect.rectX + settingsButtonRect.rectWidth / 2), (settingsButtonRect.rectY + settingsButtonRect.rectHeight) / 2, 72);
   }
   
   if(musicButtonRect.isHovering() == true){
     musicButtonRect.rectColor = color(255,0,0);
     musicButtonRect.drawRect();
-    printAsset("\uEC4F", (musicButtonRect.rectX + musicButtonRect.rectWidth / 2), (musicButtonRect.rectY + musicButtonRect.rectHeight) / 2);
+    printAsset("\uEC4F", (musicButtonRect.rectX + musicButtonRect.rectWidth / 2), (musicButtonRect.rectY + musicButtonRect.rectHeight) / 2, 72);
   }
   else{
     musicButtonRect.rectColor = color(255,255,255);
     musicButtonRect.drawRect();
-    printAsset("\uEC4F", (musicButtonRect.rectX + musicButtonRect.rectWidth / 2), (musicButtonRect.rectY + musicButtonRect.rectHeight) / 2);
+    printAsset("\uEC4F", (musicButtonRect.rectX + musicButtonRect.rectWidth / 2), (musicButtonRect.rectY + musicButtonRect.rectHeight) / 2, 72);
   }
   
   if(uploadButtonRect.isHovering() == true){
     uploadButtonRect.rectColor = color(255,0,0);
     uploadButtonRect.drawRect();
-    printAsset("\uE898", (uploadButtonRect.rectX + uploadButtonRect.rectWidth / 2), (uploadButtonRect.rectY + uploadButtonRect.rectHeight) / 2);
+    printAsset("\uE898", (uploadButtonRect.rectX + uploadButtonRect.rectWidth / 2), (uploadButtonRect.rectY + uploadButtonRect.rectHeight) / 2, 72);
   }
   else{
      uploadButtonRect.rectColor = color(255,255,255);
     uploadButtonRect.drawRect();
-    printAsset("\uE898", (uploadButtonRect.rectX + uploadButtonRect.rectWidth / 2), (uploadButtonRect.rectY + uploadButtonRect.rectHeight) / 2);
+    printAsset("\uE898", (uploadButtonRect.rectX + uploadButtonRect.rectWidth / 2), (uploadButtonRect.rectY + uploadButtonRect.rectHeight) / 2, 72);
   }
+  
+  if(playButton.isHoveringCircle() == true){
+    playButton.rectColor = color(230,230,230);
+    playButton.drawCircle();
+    if(song.isPlaying() == true){
+      printAsset("\uE769", playButton.rectX, playButton.rectY, 30);
+    }
+    else{
+      printAsset("\uF5B0", playButton.rectX, playButton.rectY, 30);
+    }
+  }
+  else{
+    playButton.rectColor = color(255,255,255);
+    playButton.drawCircle();
+    if(song.isPlaying() == true){
+      printAsset("\uE769", playButton.rectX, playButton.rectY, 30);
+    }
+    else{
+      printAsset("\uF5B0", playButton.rectX, playButton.rectY, 30);
+    }
+  }
+  
   
   
 } //END DRAW
@@ -183,6 +210,15 @@ void mousePressed() {
   if(quitButtonRect.isHovering() == true){
     println("quit button has been clicked");
     System.exit(0);
+  }
+  if(playButton.isHoveringCircle() == true){
+    if( song.isPlaying() == true){
+      song.pause();
+    }
+    else{
+      song.play();
+    }
+    
   }
 } //End mousePressed
 

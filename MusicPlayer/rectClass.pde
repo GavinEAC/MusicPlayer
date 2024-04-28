@@ -198,6 +198,15 @@ class Rect{
       return false;
     }
   }
+  
+  boolean isHoveringCircle(){
+    if( mouseX > rectX - rectWidth/2 && mouseX < rectX + rectWidth/2 && mouseY > rectY - rectWidth/2 && mouseY < rectY + rectWidth/2) {
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
     
   void printArgs(){
     println(rectX, rectY, rectWidth, rectHeight);
@@ -211,6 +220,11 @@ class Rect{
   void drawImage(String imageAdress){
     PImage image = loadImage(imageAdress);
     image(image, rectX, rectY, rectWidth, rectHeight);
+  }
+  
+  void drawCircle(){
+    fill(rectColor);
+    circle(rectX, rectY, rectWidth);
   }
 }
 
