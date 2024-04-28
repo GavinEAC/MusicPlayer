@@ -1,4 +1,6 @@
 import ddf.minim.*;
+import java.lang.reflect.Array;  
+import java.util.Arrays;  
 Minim minim;
 AudioPlayer song;
 
@@ -19,12 +21,13 @@ Rect uploadButtonRect;
 Rect quitButtonRect;
 Rect panelOne;
 Rect panelTwo;
-Rect playButton;
+Rect playButton, nextSongButton, lastSongButton;
 Rect panelThree;
 Rect albumCoverRect;
 Rect songTextRect;
 
-String currentSong;
+String[] songList;
+int currentSong;
 
 
 
@@ -67,7 +70,9 @@ void setup() {
   
   panelTwo = new Rect(backgroundRect, "f1/4", "%10", "f1/2", "%90");
   
+  lastSongButton = new Rect(panelTwo, "%40", "%90", "%7", "0");
   playButton = new Rect(panelTwo, "%50", "%90", "%10", "0");
+  nextSongButton = new Rect(panelTwo, "%60", "%90", "%7", "0");
   
   panelThree = new Rect(backgroundRect, "f3/4", "%10", "f1/4", "%90");
   
@@ -95,6 +100,9 @@ void setup() {
   musicButtonRect.drawRect();
   uploadButtonRect.drawRect();
   playButton.drawCircle();
+  nextSongButton.drawCircle();
+  lastSongButton.drawCircle();
+  
   
   
   String songName = "Song Name";
@@ -115,13 +123,11 @@ void setup() {
   
   assets = loadFont("SegoeMDL2Assets-48.vlw");
  
-  String currentSong = "song.mp3";
   minim = new Minim(this);
-  song = minim.loadFile(currentSong);
-  song.play();
-  
-  circle(100,100,100);
-  
+  songList = new String[]{"song.mp3", "sample2.mp3", "sample3.mp3", "sample4.mp3"};
+  currentSong = 0;
+  song = minim.loadFile(songList[currentSong]);
+
   
 } //END SETUP
 
@@ -180,7 +186,7 @@ void draw() {
     playButton.rectColor = color(230,230,230);
     playButton.drawCircle();
     if(song.isPlaying() == true){
-      printAsset("\uE769", playButton.rectX, playButton.rectY, 30);
+      printAsset("\uF8AE", playButton.rectX, playButton.rectY, 30);
     }
     else{
       printAsset("\uF5B0", playButton.rectX, playButton.rectY, 30);
@@ -190,11 +196,33 @@ void draw() {
     playButton.rectColor = color(255,255,255);
     playButton.drawCircle();
     if(song.isPlaying() == true){
-      printAsset("\uE769", playButton.rectX, playButton.rectY, 30);
+      printAsset("\uF8AE", playButton.rectX, playButton.rectY, 30);
     }
     else{
       printAsset("\uF5B0", playButton.rectX, playButton.rectY, 30);
     }
+  }
+  
+  if(lastSongButton.isHoveringCircle() == true){
+    lastSongButton.rectColor = color(230,230,230);
+    lastSongButton.drawCircle();
+    printAsset("\uF8AC", lastSongButton.rectX, lastSongButton.rectY, 30);
+    }
+  else{
+    lastSongButton.rectColor = color(255,255,255);
+    lastSongButton.drawCircle();
+    printAsset("\uF8AC", lastSongButton.rectX, lastSongButton.rectY, 30);
+  }
+  
+  if(nextSongButton.isHoveringCircle() == true){
+    nextSongButton.rectColor = color(230,230,230);
+    nextSongButton.drawCircle();
+    printAsset("\uF8AD", nextSongButton.rectX, nextSongButton.rectY, 30);
+  }
+  else{
+    nextSongButton.rectColor = color(255,255,255);
+    nextSongButton.drawCircle();
+    printAsset("\uF8AD", nextSongButton.rectX, nextSongButton.rectY, 30);
   }
   
   
@@ -218,8 +246,35 @@ void mousePressed() {
     else{
       song.play();
     }
-    
   }
+    
+  if(lastSongButton.isHoveringCircle() == true){
+    if(currentSong > 0){
+      song.pause();
+      currentSong --;
+      song = minim.loadFile(songList[currentSong]);
+      song.rewind();
+      song.play();
+    }
+  }
+  
+  if(nextSongButton.isHoveringCircle() == true){
+    if(currentSong + 1 < Array.getLength(songList)){
+      println(Array.getLength(songList));
+      println(currentSong);
+      song.pause();
+      currentSong++;
+      song = minim.loadFile(songList[currentSong ]);
+      song.rewind();
+      song.play();
+    }
+  }
+  
+  
+  if(musicButtonRect.isHovering() ==true){
+    song.play();
+  }
+    
 } //End mousePressed
 
 // End MAIN Program
