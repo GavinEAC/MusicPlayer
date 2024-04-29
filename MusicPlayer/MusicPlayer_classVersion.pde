@@ -1,8 +1,7 @@
 import ddf.minim.*;
 import java.lang.reflect.Array;  
 import java.util.Arrays;  
-Minim minim;
-AudioPlayer song;
+import java.io.*;
 
 //GLOBAL VARIABLES
 int appWidth, appHeight;
@@ -26,6 +25,8 @@ Rect panelThree;
 Rect albumCoverRect;
 Rect songTextRect;
 
+Minim minim;
+AudioPlayer song;
 String[] songList;
 int currentSong;
 
@@ -122,9 +123,21 @@ void setup() {
   text(songArtist, songTextRect.rectX, songTextRect.rectY + songNameSize + songArtistSize);
   
   assets = loadFont("SegoeMDL2Assets-48.vlw");
- 
+  
+  File musicDir = new File("data/music/");
+  File musicDirAbsolutePath = new File(musicDir.getAbsolutePath());
+  File folder = new File(musicDirAbsolutePath);
+  File[] listOfFiles = folder.listFiles();
+  
+  for (File file : listOfFiles) {
+      if (file.isFile()) {
+          System.out.println(file.getName());
+      }
+  }
+  
+  
   minim = new Minim(this);
-  songList = new String[]{"song.mp3", "sample2.mp3", "sample3.mp3", "sample4.mp3"};
+  songList = new String[]{"music/song.mp3", "music/sample2.mp3", "music/sample3.mp3", "music/sample4.mp3"};
   currentSong = 0;
   song = minim.loadFile(songList[currentSong]);
 
