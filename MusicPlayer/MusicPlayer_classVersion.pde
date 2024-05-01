@@ -123,18 +123,11 @@ void setup() {
   text(songArtist, songTextRect.rectX, songTextRect.rectY + songNameSize + songArtistSize);
   
   assets = loadFont("SegoeMDL2Assets-48.vlw");
-  
-  File musicDir = new File("data/music/");
-  File musicDirAbsolutePath = new File(musicDir.getAbsolutePath());
-  File[] listOfFiles = musicDirAbsolutePath.listFiles();
   /*
-  for(int i = 0; i < listOfFiles.length ; i++){
-   println(listOfFiles[i]); 
-  }
+  File musicDir = new File("/music");
+  File[] listOfFiles = musicDir.listFiles();
+  println(listOfFiles[0]);
   */
-  
- println(musicDirAbsolutePath);
-  
   
   minim = new Minim(this);
   songList = new String[]{"music/song.mp3", "music/sample2.mp3", "music/sample3.mp3", "music/sample4.mp3"};
