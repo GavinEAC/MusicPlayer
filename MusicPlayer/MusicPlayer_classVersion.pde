@@ -126,14 +126,14 @@ void setup() {
   
   File musicDir = new File("data/music/");
   File musicDirAbsolutePath = new File(musicDir.getAbsolutePath());
-  File folder = new File(musicDirAbsolutePath);
-  File[] listOfFiles = folder.listFiles();
-  
-  for (File file : listOfFiles) {
-      if (file.isFile()) {
-          System.out.println(file.getName());
-      }
+  File[] listOfFiles = musicDirAbsolutePath.listFiles();
+  /*
+  for(int i = 0; i < listOfFiles.length ; i++){
+   println(listOfFiles[i]); 
   }
+  */
+  
+ println(musicDirAbsolutePath);
   
   
   minim = new Minim(this);
