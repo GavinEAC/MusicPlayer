@@ -30,8 +30,6 @@ AudioPlayer song;
 String[] songList;
 int currentSong;
 
-
-
 //SETUP
 void setup() {
   //size(400, 500); //width, height (non fullscreen is not supported in this version
@@ -123,14 +121,18 @@ void setup() {
   text(songArtist, songTextRect.rectX, songTextRect.rectY + songNameSize + songArtistSize);
   
   assets = loadFont("SegoeMDL2Assets-48.vlw");
-  /*
-  File musicDir = new File("/music");
-  File[] listOfFiles = musicDir.listFiles();
-  println(listOfFiles[0]);
-  */
+  
+  String path = sketchPath("data/music");
+  File musicDir = new File(path);
+  String[] listOfFiles = musicDir.list();
+  for(int i = 0; i < listOfFiles.length; i++){
+    listOfFiles[i] = "music/" + listOfFiles[i];
+    println(listOfFiles[i]);
+  }
+  
   
   minim = new Minim(this);
-  songList = new String[]{"music/song.mp3", "music/sample2.mp3", "music/sample3.mp3", "music/sample4.mp3"};
+  songList = listOfFiles;
   currentSong = 0;
   song = minim.loadFile(songList[currentSong]);
 
@@ -231,6 +233,17 @@ void draw() {
     printAsset("\uF8AD", nextSongButton.rectX, nextSongButton.rectY, 30);
   }
   
+  println(song.position(), song.length(), song.length() - song.position());
+  //I Will Come Back To This Issue :[
+  //TODO implement auto cue and play feature for each song to play after the next
+  //CONDITIONS
+  //PlayList must have been started
+  //Song hasnt been paused 
+  //Song isnt playing currently
+  //if all true then update to next song and play
+  
+  
+  
   
   
 } //END DRAW
@@ -256,6 +269,7 @@ void mousePressed() {
     
   if(lastSongButton.isHoveringCircle() == true){
     if(currentSong > 0){
+      println("Previous Song!");
       song.pause();
       currentSong --;
       song = minim.loadFile(songList[currentSong]);
@@ -266,8 +280,7 @@ void mousePressed() {
   
   if(nextSongButton.isHoveringCircle() == true){
     if(currentSong + 1 < Array.getLength(songList)){
-      println(Array.getLength(songList));
-      println(currentSong);
+      println("Next Song!");
       song.pause();
       currentSong++;
       song = minim.loadFile(songList[currentSong ]);

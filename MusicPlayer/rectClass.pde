@@ -13,6 +13,7 @@ class parentRect{
 }
 
 class Rect{
+  int rectID; //used for drawing songs in panel one(Which are created in a loop)
   float rectX;
   float rectY;
   float rectWidth;
