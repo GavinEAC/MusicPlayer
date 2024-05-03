@@ -14,12 +14,14 @@ PFont assets;
 PFont defaultFont;
 PImage demoAlbumCover;
 
-//Minim Initialization
+//Minim Initialization and song management variables
 Minim minim;
 AudioPlayer song;
 String[] songList;
 int currentSong;
 Rect[] songSelectionRectArray;
+int songLevel = 0;
+
 
 //SETUP
 void setup() {
@@ -34,7 +36,6 @@ void setup() {
   
   assets = loadFont("SegoeMDL2Assets-48.vlw");
   defaultFont = createFont("OpenSans-Bold.ttf", 48, true);
-  //defaultFont = loadFont("Arial-Black-48.vlw");
   
   //See Divs File For What the Functions Do
   createDivs();
@@ -78,17 +79,13 @@ void setup() {
   
   for(int i = 0; i < listOfFiles.length; i++){
     songSelectionRectArray[i] = new Rect(panelOne, "0", "0", "%100", "f1/5");
-    songSelectionRectArray[i].rectY= songSelectionRectArray[i].rectHeight * i + topBarRect.rectHeight;
     songSelectionRectArray[i].rectColor = color(0,255,255);
     songSelectionRectArray[i].rectID = i;
-    songSelectionRectArray[i].drawRect();
-    textFont(defaultFont);
-    textSize(24);
-    fill(0,0,0);
-    text(songList[i], songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 30);
-    text("songID: " + songSelectionRectArray[i].rectID, songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 60);
   }
-} //END SETUP
+  
+  drawSongSelectionRects();
+}
+//END SETUP
 
  
 
@@ -192,15 +189,15 @@ void draw() {
 
 void keyPressed() {
   if(key == 'u' || key == 'U'){
-    for(int i = 0; i < songSelectionRectArray.length; i++){
-      songSelectionRectArray[i].rectY = songSelectionRectArray[i].rectY - 1;
-      songSelectionRectArray[i].drawRect();
-      fill(0,0,0);
-      textAlign(LEFT);
-      textFont(defaultFont);
-      textSize(24);
-      text(songList[i], songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 30);
-      text("songID: " + songSelectionRectArray[i].rectID, songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 60);
+    songLevel++;
+    println(songLevel);
+    drawSongSelectionRects();
+  }
+  if(key == 'i' || key == 'I'){
+    if(songLevel > 0){
+      songLevel--;
+      println(songLevel);
+      drawSongSelectionRects();
     }
   }
 } //End keyPressed
@@ -245,6 +242,7 @@ void mousePressed() {
   }   
   
   for(int i = 0; i < songSelectionRectArray.length; i++){
+    //TODO MANAGE SONG SELECTION OVERLAY BUG DO IT SOOOOON
     if(songSelectionRectArray[i].isHovering() == true){
       song.pause();
       song.rewind();

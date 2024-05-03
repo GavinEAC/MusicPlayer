@@ -27,3 +27,32 @@ void autoPlay(){
     }
   }
 }
+
+void drawSongSelectionRects(){
+  if(songLevel * 5 + 5 > songSelectionRectArray.length){
+    panelOne.drawRect();
+    for(int i = 5 * songLevel; i < songSelectionRectArray.length; i++){
+        songSelectionRectArray[i].rectY= songSelectionRectArray[i].rectHeight * (i - 5) + topBarRect.rectHeight;
+        songSelectionRectArray[i].drawRect();
+        textFont(defaultFont);
+        textAlign(LEFT);
+        textSize(24);
+        fill(0,0,0);
+        text(songList[i], songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 30);
+        text("songID: " + songSelectionRectArray[i].rectID, songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 60);
+      }
+  }
+  else{
+    for(int i = 5 * songLevel; i < 5 * songLevel + 5; i++){
+      songSelectionRectArray[i].rectY= songSelectionRectArray[i].rectHeight * i + topBarRect.rectHeight;
+      songSelectionRectArray[i].drawRect();
+      textFont(defaultFont);
+      textAlign(LEFT);
+      textSize(24);
+      fill(0,0,0);
+      text(songList[i], songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 30);
+      text("songID: " + songSelectionRectArray[i].rectID, songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 60);
+    }
+  }
+}
+  
