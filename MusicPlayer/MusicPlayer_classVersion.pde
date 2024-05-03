@@ -11,6 +11,7 @@ boolean isPaused;
 
 //image and font declaration
 PFont assets;
+PFont defaultFont;
 PImage demoAlbumCover;
 
 //Minim Initialization
@@ -18,6 +19,7 @@ Minim minim;
 AudioPlayer song;
 String[] songList;
 int currentSong;
+Rect[] songSelectionRectArray;
 
 //SETUP
 void setup() {
@@ -29,6 +31,10 @@ void setup() {
   //Landscape is HARDCODED
   String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "No, fix your device"; 
   println(displayInstructions);
+  
+  assets = loadFont("SegoeMDL2Assets-48.vlw");
+  defaultFont = createFont("OpenSans-Bold.ttf", 48, true);
+  //defaultFont = loadFont("Arial-Black-48.vlw");
   
   //See Divs File For What the Functions Do
   createDivs();
@@ -54,29 +60,37 @@ void setup() {
   textSize(songArtistSize);
   text(songArtist, songTextRect.rectX, songTextRect.rectY + songNameSize + songArtistSize);
   
-  assets = loadFont("SegoeMDL2Assets-48.vlw");
-  
+  //Loads Songs from music folder and adds them to an array
   String path = sketchPath("data/music");
   File musicDir = new File(path);
   String[] listOfFiles = musicDir.list();
   for(int i = 0; i < listOfFiles.length; i++){
     listOfFiles[i] = "music/" + listOfFiles[i];
-    println(listOfFiles[i]);
   }
   
-  for(int i = 0; i < listOfFiles.length; i++){
-    Rect songSelectionRect = new Rect(panelOne, "0", "0", "%100", "f1/5");
-    songSelectionRect.rectColor = color(0,255,255);
-    songSelectionRect.drawRect();
-  }
-  
+  //instantiates minim stuff
   minim = new Minim(this);
   songList = listOfFiles;
   currentSong = 0;
   song = minim.loadFile(songList[currentSong]);
-
   
+  songSelectionRectArray = new Rect[songList.length];
+  
+  for(int i = 0; i < listOfFiles.length; i++){
+    songSelectionRectArray[i] = new Rect(panelOne, "0", "0", "%100", "f1/5");
+    songSelectionRectArray[i].rectY= songSelectionRectArray[i].rectHeight * i + topBarRect.rectHeight;
+    songSelectionRectArray[i].rectColor = color(0,255,255);
+    songSelectionRectArray[i].rectID = i;
+    songSelectionRectArray[i].drawRect();
+    textFont(defaultFont);
+    textSize(24);
+    fill(0,0,0);
+    text(songList[i], songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 30);
+    text("songID: " + songSelectionRectArray[i].rectID, songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 60);
+  }
 } //END SETUP
+
+ 
 
 
 
@@ -171,21 +185,24 @@ void draw() {
     printAsset("\uF8AD", nextSongButton.rectX, nextSongButton.rectY, 30);
   }
  
- 
   autoPlay();
-  
-  
-  
-  
-  
-  
-  
-  
   
 } //END DRAW
 
 
 void keyPressed() {
+  if(key == 'u' || key == 'U'){
+    for(int i = 0; i < songSelectionRectArray.length; i++){
+      songSelectionRectArray[i].rectY = songSelectionRectArray[i].rectY - 1;
+      songSelectionRectArray[i].drawRect();
+      fill(0,0,0);
+      textAlign(LEFT);
+      textFont(defaultFont);
+      textSize(24);
+      text(songList[i], songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 30);
+      text("songID: " + songSelectionRectArray[i].rectID, songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 60);
+    }
+  }
 } //End keyPressed
 
 void mousePressed() {
@@ -221,11 +238,22 @@ void mousePressed() {
       println("Next Song!");
       song.pause();
       currentSong++;
-      song = minim.loadFile(songList[currentSong ]);
+      song = minim.loadFile(songList[currentSong]);
       song.rewind();
       song.play();
     }
   }   
+  
+  for(int i = 0; i < songSelectionRectArray.length; i++){
+    if(songSelectionRectArray[i].isHovering() == true){
+      song.pause();
+      song.rewind();
+      currentSong = songSelectionRectArray[i].rectID;
+      song = minim.loadFile(songList[currentSong]);
+      song.rewind();
+      song.play();
+    }
+  }
 } //End mousePressed
 
 // End MAIN Program
