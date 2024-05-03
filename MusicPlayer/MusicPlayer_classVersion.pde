@@ -5,26 +5,15 @@ import java.io.*;
 
 //GLOBAL VARIABLES
 int appWidth, appHeight;
+boolean isPaused;
 
 
 
-//image variable declaration
+//image and font declaration
 PFont assets;
 PImage demoAlbumCover;
-PImage settingIcon, musicNoteIcon, downloadIcon, quitButtonIcon;
-parentRect backgroundRect;
-Rect topBarRect;
-Rect settingsButtonRect;
-Rect musicButtonRect;
-Rect uploadButtonRect;
-Rect quitButtonRect;
-Rect panelOne;
-Rect panelTwo;
-Rect playButton, nextSongButton, lastSongButton;
-Rect panelThree;
-Rect albumCoverRect;
-Rect songTextRect;
 
+//Minim Initialization
 Minim minim;
 AudioPlayer song;
 String[] songList;
@@ -41,68 +30,13 @@ void setup() {
   String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "No, fix your device"; 
   println(displayInstructions);
   
-  //Instantiate master background rect
-  backgroundRect = new parentRect();
-  topBarRect = new Rect(backgroundRect, "0", "0", "%100", "%10");
-  
-  settingsButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
-  settingsButtonRect.rectWidth = settingsButtonRect.rectHeight;
-  
-  musicButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
-  musicButtonRect.rectX = musicButtonRect.rectParent.rectHeight * 1;
-  musicButtonRect.rectWidth = musicButtonRect.rectHeight;
-  musicButtonRect.rectColor = color(0,255,0);
-  
-  uploadButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
-  uploadButtonRect.rectX = uploadButtonRect.rectHeight * 2;
-  uploadButtonRect.rectWidth = uploadButtonRect.rectHeight;
-  uploadButtonRect.rectColor = color(0,0,255);
-  
-  quitButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
-  quitButtonRect.rectX = quitButtonRect.rectParent.rectWidth - quitButtonRect.rectParent.rectHeight;
-  quitButtonRect.rectWidth = quitButtonRect.rectHeight;
-  
-  
-  
-  
-  panelOne = new Rect(backgroundRect, "0", "%10", "f1/4", "%90");
-  
-  panelTwo = new Rect(backgroundRect, "f1/4", "%10", "f1/2", "%90");
-  
-  lastSongButton = new Rect(panelTwo, "%40", "%90", "%7", "0");
-  playButton = new Rect(panelTwo, "%50", "%90", "%10", "0");
-  nextSongButton = new Rect(panelTwo, "%60", "%90", "%7", "0");
-  
-  panelThree = new Rect(backgroundRect, "f3/4", "%10", "f1/4", "%90");
-  
-  albumCoverRect = new Rect(panelTwo, "%25", "%20", "%50", "%50");
-  
-  songTextRect = new Rect(panelTwo, "%25", "f697/1000", "%50", "%10");
-
-  //Instantiate Rects
-  
-  topBarRect.rectColor = color(255,255,255);
-  panelOne.rectColor = color(255,0,0);
-  panelTwo.rectColor = color(0,255,0);
-  panelThree.rectColor = color(0,0,255);
-  albumCoverRect.rectColor = color(255,255,255);
-  songTextRect.rectColor = color(255,255,255);
-  
-  topBarRect.drawRect();
-  quitButtonRect.drawRect();
-  panelOne.drawRect();
-  panelTwo.drawRect();
-  panelThree.drawRect();
+  //See Divs File For What the Functions Do
+  createDivs();
+  setDivColors();
+  drawDivs();
   albumCoverRect.drawImage("demoAlbumCover.jpg");
-  songTextRect.drawRect();
-  settingsButtonRect.drawRect();
-  musicButtonRect.drawRect();
-  uploadButtonRect.drawRect();
-  playButton.drawCircle();
-  nextSongButton.drawCircle();
-  lastSongButton.drawCircle();
-  
-  
+  createButtons();
+  //Buttons are drawn in draw Function, so its not needed here
   
   String songName = "Song Name";
   int songNameSize = 24;
@@ -130,6 +64,11 @@ void setup() {
     println(listOfFiles[i]);
   }
   
+  for(int i = 0; i < listOfFiles.length; i++){
+    Rect songSelectionRect = new Rect(panelOne, "0", "0", "%100", "f1/5");
+    songSelectionRect.rectColor = color(0,255,255);
+    songSelectionRect.drawRect();
+  }
   
   minim = new Minim(this);
   songList = listOfFiles;
@@ -145,7 +84,6 @@ void setup() {
 
 //DRAW
 void draw() {
-  
   if(quitButtonRect.isHovering() == true){
     quitButtonRect.rectColor = color(255,0,0);
     quitButtonRect.drawRect();
@@ -232,15 +170,13 @@ void draw() {
     nextSongButton.drawCircle();
     printAsset("\uF8AD", nextSongButton.rectX, nextSongButton.rectY, 30);
   }
+ 
+ 
+  autoPlay();
   
-  println(song.position(), song.length(), song.length() - song.position());
-  //I Will Come Back To This Issue :[
-  //TODO implement auto cue and play feature for each song to play after the next
-  //CONDITIONS
-  //PlayList must have been started
-  //Song hasnt been paused 
-  //Song isnt playing currently
-  //if all true then update to next song and play
+  
+  
+  
   
   
   
@@ -261,9 +197,11 @@ void mousePressed() {
   if(playButton.isHoveringCircle() == true){
     if( song.isPlaying() == true){
       song.pause();
+      isPaused = true;
     }
     else{
       song.play();
+      isPaused = false;
     }
   }
     
@@ -287,13 +225,7 @@ void mousePressed() {
       song.rewind();
       song.play();
     }
-  }
-  
-  
-  if(musicButtonRect.isHovering() ==true){
-    song.play();
-  }
-    
+  }   
 } //End mousePressed
 
 // End MAIN Program
