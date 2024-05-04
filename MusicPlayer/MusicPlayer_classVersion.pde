@@ -189,9 +189,11 @@ void draw() {
 
 void keyPressed() {
   if(key == 'u' || key == 'U'){
-    songLevel++;
-    println(songLevel);
-    drawSongSelectionRects();
+    if((songLevel + 1)* 5 <= songList.length){
+      songLevel++;
+      println(songLevel);
+      drawSongSelectionRects();
+    }
   }
   if(key == 'i' || key == 'I'){
     if(songLevel > 0){
@@ -241,17 +243,31 @@ void mousePressed() {
     }
   }   
   
-  for(int i = 0; i < songSelectionRectArray.length; i++){
-    //TODO MANAGE SONG SELECTION OVERLAY BUG DO IT SOOOOON
-    if(songSelectionRectArray[i].isHovering() == true){
-      song.pause();
-      song.rewind();
-      currentSong = songSelectionRectArray[i].rectID;
-      song = minim.loadFile(songList[currentSong]);
-      song.rewind();
-      song.play();
+  if(songLevel * 5 + 5 > songSelectionRectArray.length){
+    for(int i = 5 * songLevel; i < songSelectionRectArray.length; i++){
+      if(songSelectionRectArray[i].isHovering() == true){
+        song.pause();
+        song.rewind();
+        currentSong = songSelectionRectArray[i].rectID;
+        song = minim.loadFile(songList[currentSong]);
+        song.rewind();
+        song.play();
+      }
     }
   }
+  else{
+    for(int i = 5 * songLevel; i < 5 * songLevel + 5; i++){
+      if(songSelectionRectArray[i].isHovering() == true){
+        song.pause();
+        song.rewind();
+        currentSong = songSelectionRectArray[i].rectID;
+        song = minim.loadFile(songList[currentSong]);
+        song.rewind();
+        song.play();
+      }
+    }
+  }
+  
 } //End mousePressed
 
 // End MAIN Program
