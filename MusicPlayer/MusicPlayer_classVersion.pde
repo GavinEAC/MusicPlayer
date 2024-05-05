@@ -6,6 +6,7 @@ import java.io.*;
 //GLOBAL VARIABLES
 int appWidth, appHeight;
 boolean isPaused;
+int selectedPanelUse;
 
 
 
@@ -106,7 +107,7 @@ void draw() {
     printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2, 72);
   }
   
-  if(settingsButtonRect.isHovering() == true){
+  if(settingsButtonRect.isHovering() == true || selectedPanelUse == 2){
     settingsButtonRect.rectColor = color(255,0,0);
     settingsButtonRect.drawRect();
     printAsset("\uE713", (settingsButtonRect.rectX + settingsButtonRect.rectWidth / 2), (settingsButtonRect.rectY + settingsButtonRect.rectHeight) / 2, 72);
@@ -117,7 +118,7 @@ void draw() {
     printAsset("\uE713", (settingsButtonRect.rectX + settingsButtonRect.rectWidth / 2), (settingsButtonRect.rectY + settingsButtonRect.rectHeight) / 2, 72);
   }
   
-  if(musicButtonRect.isHovering() == true){
+  if(musicButtonRect.isHovering() == true || selectedPanelUse == 1){
     musicButtonRect.rectColor = color(255,0,0);
     musicButtonRect.drawRect();
     printAsset("\uEC4F", (musicButtonRect.rectX + musicButtonRect.rectWidth / 2), (musicButtonRect.rectY + musicButtonRect.rectHeight) / 2, 72);
@@ -268,6 +269,13 @@ void mousePressed() {
     }
   }
   
+  if(musicButtonRect.isHovering() == true){
+    selectedPanelUse = 1;
+  }
+  
+  if(settingsButtonRect.isHovering() == true){
+    selectedPanelUse = 2;
+  }
 } //End mousePressed
 
 // End MAIN Program
