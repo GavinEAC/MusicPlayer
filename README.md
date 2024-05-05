@@ -2,7 +2,7 @@
 My First GitHub Project. A Music Player For CS 10
 
 # To Do List
--[ ] Optimize hover detecting algorithm
+-[ ] Optimize hover detecting algorithm<br>
 -[X] Pause/play button<br>
 -[X] have a picture of the album<br>
 -[ ] Display artist and title<br>
