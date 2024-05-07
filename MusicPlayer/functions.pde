@@ -33,11 +33,12 @@ void drawSongSelectionRects(){
     panelOne.drawRect();
     for(int i = 5 * songLevel; i < songSelectionRectArray.length; i++){
         songSelectionRectArray[i].rectY= songSelectionRectArray[i].rectHeight * (i - 5) + topBarRect.rectHeight;
+        songSelectionRectArray[i].rectColor = currentTheme[11];
         songSelectionRectArray[i].drawRect();
         textFont(defaultFont);
         textAlign(LEFT);
         textSize(24);
-        fill(0,0,0);
+        fill(currentTheme[12]);
         text(songList[i], songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 30);
         text("songID: " + songSelectionRectArray[i].rectID, songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 60);
       }
@@ -45,11 +46,12 @@ void drawSongSelectionRects(){
   else{
     for(int i = 5 * songLevel; i < 5 * songLevel + 5; i++){
       songSelectionRectArray[i].rectY= songSelectionRectArray[i].rectHeight * i + topBarRect.rectHeight;
+      songSelectionRectArray[i].rectColor = currentTheme[11];
       songSelectionRectArray[i].drawRect();
       textFont(defaultFont);
       textAlign(LEFT);
       textSize(24);
-      fill(0,0,0);
+      fill(currentTheme[12]);
       text(songList[i], songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 30);
       text("songID: " + songSelectionRectArray[i].rectID, songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 60);
     }

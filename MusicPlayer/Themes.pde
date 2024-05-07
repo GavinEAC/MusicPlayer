@@ -25,6 +25,7 @@ color musicControlButtonsHoverColor;
 color musicControlButtonsAssetColor;
 color musicControlButtonsAssetHoverColor;
 color songSelectionRectColor;
+color songSelectionRectTextColor;
 color[] currentTheme = new color[] {
   topBarColor,
   topBarButtonHoverColor,
@@ -37,7 +38,8 @@ color[] currentTheme = new color[] {
   musicControlButtonsHoverColor,
   musicControlButtonsAssetColor,
   musicControlButtonsAssetHoverColor,
-  songSelectionRectColor
+  songSelectionRectColor,
+  songSelectionRectTextColor
 };
 
 color[] darkModeTheme = new color[]{
@@ -52,7 +54,8 @@ color[] darkModeTheme = new color[]{
   color(60,60,80),
   color(255,255,255),
   color(255,255,255),
-  color(60,60,80)
+  color(60,60,80),
+  color(255,255,255)
 };
 
 void function(){
