@@ -1,7 +1,7 @@
 //Use this site as reference for asset unicode points:
 //https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-ui-symbol-font
-void printAsset(String asset, float x, float y, int textSize){
-  fill(0,0,0);
+void printAsset(String asset, float x, float y, int textSize, color assetColor){
+  fill(assetColor);
   textFont(assets);
   textSize(textSize);
   textAlign(CENTER, CENTER);

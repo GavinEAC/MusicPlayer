@@ -1,3 +1,13 @@
+//
+//
+//
+//ADD THE COLOURS TO THE BUTTONS OR EVERYTHING BREAKS!!!!!!!!!!!!!
+//
+//
+//
+//
+//
+
 import ddf.minim.*;
 import java.lang.reflect.Array;  
 import java.util.Arrays;  
@@ -26,6 +36,8 @@ int songLevel = 0;
 
 //SETUP
 void setup() {
+  setTheme(darkModeTheme);
+  function();
   //size(400, 500); //width, height (non fullscreen is not supported in this version
   fullScreen(); //displayWidth, displayHeight
   appWidth = displayWidth;
@@ -99,12 +111,12 @@ void draw() {
   if(quitButtonRect.isHovering() == true){
     quitButtonRect.rectColor = color(255,0,0);
     quitButtonRect.drawRect();
-    printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2, 72);
+    printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2, 72, );
   }
   else{
-    quitButtonRect.rectColor = color(255,255,255);
+    quitButtonRect.rectColor = currentTheme[topBarColor];
     quitButtonRect.drawRect();
-    printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2, 72);
+    printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2, 72, currentTheme[3]);
   }
   
   if(settingsButtonRect.isHovering() == true || selectedPanelUse == 2){
@@ -113,7 +125,7 @@ void draw() {
     printAsset("\uE713", (settingsButtonRect.rectX + settingsButtonRect.rectWidth / 2), (settingsButtonRect.rectY + settingsButtonRect.rectHeight) / 2, 72);
   }
   else{
-    settingsButtonRect.rectColor = color(255,255,255);
+    settingsButtonRect.rectColor = currentTheme[topBarColor];
     settingsButtonRect.drawRect();
     printAsset("\uE713", (settingsButtonRect.rectX + settingsButtonRect.rectWidth / 2), (settingsButtonRect.rectY + settingsButtonRect.rectHeight) / 2, 72);
   }
@@ -124,7 +136,7 @@ void draw() {
     printAsset("\uEC4F", (musicButtonRect.rectX + musicButtonRect.rectWidth / 2), (musicButtonRect.rectY + musicButtonRect.rectHeight) / 2, 72);
   }
   else{
-    musicButtonRect.rectColor = color(255,255,255);
+    musicButtonRect.rectColor = currentTheme[topBarColor];
     musicButtonRect.drawRect();
     printAsset("\uEC4F", (musicButtonRect.rectX + musicButtonRect.rectWidth / 2), (musicButtonRect.rectY + musicButtonRect.rectHeight) / 2, 72);
   }
@@ -135,7 +147,7 @@ void draw() {
     printAsset("\uE898", (uploadButtonRect.rectX + uploadButtonRect.rectWidth / 2), (uploadButtonRect.rectY + uploadButtonRect.rectHeight) / 2, 72);
   }
   else{
-     uploadButtonRect.rectColor = color(255,255,255);
+     uploadButtonRect.rectColor = currentTheme[topBarColor];
     uploadButtonRect.drawRect();
     printAsset("\uE898", (uploadButtonRect.rectX + uploadButtonRect.rectWidth / 2), (uploadButtonRect.rectY + uploadButtonRect.rectHeight) / 2, 72);
   }

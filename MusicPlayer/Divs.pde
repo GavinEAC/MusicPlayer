@@ -27,10 +27,11 @@ void createDivs(){
 }
 
 void setDivColors(){
-  topBarRect.rectColor = color(255,255,255);
-  panelOne.rectColor = color(255,0,0);
-  panelTwo.rectColor = color(0,255,0);
-  panelThree.rectColor = color(0,0,255);
+  topBarRect.rectColor = currentTheme[0];
+  panelOne.rectColor = currentTheme[4];
+  panelTwo.rectColor = currentTheme[5];
+  panelThree.rectColor = currentTheme[6];
+  //These dont normaly appear so they dont get a theme colour attribute
   albumCoverRect.rectColor = color(255,255,255);
   songTextRect.rectColor = color(255,255,255);
 }
@@ -39,7 +40,9 @@ void drawDivs(){
   topBarRect.drawRect();
   panelOne.drawRect();
   panelTwo.drawRect();
+  strokeWeight(10);
   albumCoverRect.drawRect();
+  strokeWeight(4);
   panelThree.drawRect();
   songTextRect.drawRect();
 }
