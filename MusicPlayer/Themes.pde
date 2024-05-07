@@ -71,6 +71,35 @@ color[] darkModeTheme = new color[]{
   color(255,255,255)
 };
 
+color[] lightModeTheme = new color[]{
+  //topBarColor
+  color(72,75,106),
+  //topBarButtonHoverColor
+  color(147,148,165),
+  //topBarButtonAssetHoverColor
+  color(0,0,0),
+  // topBarButtonAssetColor
+  color(255,255,255),
+  //panelOneColor
+  color(255,255,255),
+  //panelTwoColor
+  color(228,229,241),
+  //panelThreeColor
+  color(255,255,255),
+  // musicControlButtonsColor
+  color(72,75,106),
+  //musicControlButtonsHoverColor
+  color(147,148,165),
+  // musicControlButtonsAssetColor
+  color(255,255,255),
+  // musicControlButtonsAssetHoverColor
+  color(0,0,0),
+  //songSelectionRectColor
+  color(228,229,241),
+  // songSelectionRectTextColor
+  color(255,255,255)
+};
+
 color[] pinkTheme = new color[]{
   //topBarColor
   color(254, 105, 148),
