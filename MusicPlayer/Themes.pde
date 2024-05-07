@@ -43,20 +43,64 @@ color[] currentTheme = new color[] {
 };
 
 color[] darkModeTheme = new color[]{
+  //topBarColor
   color(20,20,20),
+  //topBarButtonHoverColor
   color(255,255,255),
+  //topBarButtonAssetHoverColor
   color(20,20,20),
+  // topBarButtonAssetColor
   color(255,255,255),
+  //panelOneColor
   color(40,40,40),
+  //panelTwoColor
   color(60,60,60),
+  //panelThreeColor
   color(40,40,40),
+  // musicControlButtonsColor
   color(40,60,40),
+  //musicControlButtonsHoverColor
   color(60,60,80),
+  // musicControlButtonsAssetColor
   color(255,255,255),
+  // musicControlButtonsAssetHoverColor
   color(255,255,255),
+  //songSelectionRectColor
   color(60,60,80),
+  // songSelectionRectTextColor
   color(255,255,255)
 };
+
+color[] pinkTheme = new color[]{
+  //topBarColor
+  color(254, 105, 148),
+  //topBarButtonHoverColor
+  color(254,190, 204),
+  //topBarButtonAssetHoverColor
+  color(0,0,0),
+  // topBarButtonAssetColor
+  color(0,0,0),
+  //panelOneColor
+  color(254,177,183),
+  //panelTwoColor
+  color(253, 120, 139),
+  //panelThreeColor
+  color(254,177,183),
+  // musicControlButtonsColor
+  color(274, 125, 168),
+  //musicControlButtonsHoverColor
+  color(254,190, 204),
+  // musicControlButtonsAssetColor
+  color(255,255,255),
+  // musicControlButtonsAssetHoverColor
+  color(0,0,0),
+  //songSelectionRectColor
+  color(255, 232, 234),
+  // songSelectionRectTextColor
+  color(0,0,0)
+};
+
+
 
 void function(){
   for(int i = 0; i < currentTheme.length; i++){

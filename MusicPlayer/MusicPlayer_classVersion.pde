@@ -36,7 +36,7 @@ int songLevel = 0;
 
 //SETUP
 void setup() {
-  setTheme(darkModeTheme);
+  setTheme(pinkTheme);
   function();
   //size(400, 500); //width, height (non fullscreen is not supported in this version
   fullScreen(); //displayWidth, displayHeight
@@ -109,7 +109,7 @@ void setup() {
 //DRAW
 void draw() {
   if(quitButtonRect.isHovering() == true){
-    quitButtonRect.rectColor = color(255,0,0);
+    quitButtonRect.rectColor = currentTheme[1];
     quitButtonRect.drawRect();
     printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2, 72, currentTheme[2]);
   }
@@ -120,7 +120,7 @@ void draw() {
   }
   
   if(settingsButtonRect.isHovering() == true || selectedPanelUse == 2){
-    settingsButtonRect.rectColor = color(255,0,0);
+    settingsButtonRect.rectColor = currentTheme[1];
     settingsButtonRect.drawRect();
     printAsset("\uE713", (settingsButtonRect.rectX + settingsButtonRect.rectWidth / 2), (settingsButtonRect.rectY + settingsButtonRect.rectHeight) / 2, 72, currentTheme[2]);
   }
@@ -131,7 +131,7 @@ void draw() {
   }
   
   if(musicButtonRect.isHovering() == true || selectedPanelUse == 1){
-    musicButtonRect.rectColor = color(255,0,0);
+    musicButtonRect.rectColor = currentTheme[1];
     musicButtonRect.drawRect();
     printAsset("\uEC4F", (musicButtonRect.rectX + musicButtonRect.rectWidth / 2), (musicButtonRect.rectY + musicButtonRect.rectHeight) / 2, 72, currentTheme[2]);
   }
@@ -142,7 +142,7 @@ void draw() {
   }
   
   if(uploadButtonRect.isHovering() == true){
-    uploadButtonRect.rectColor = color(255,0,0);
+    uploadButtonRect.rectColor = currentTheme[1];
     uploadButtonRect.drawRect();
     printAsset("\uE898", (uploadButtonRect.rectX + uploadButtonRect.rectWidth / 2), (uploadButtonRect.rectY + uploadButtonRect.rectHeight) / 2, 72, currentTheme[2]);
   }
