@@ -1,13 +1,3 @@
-//
-//
-//
-//ADD THE COLOURS TO THE BUTTONS OR EVERYTHING BREAKS!!!!!!!!!!!!!
-//
-//
-//
-//
-//
-
 import ddf.minim.*;
 import java.lang.reflect.Array;  
 import java.util.Arrays;  
@@ -37,20 +27,15 @@ int songLevel = 0;
 //SETUP
 void setup() {
   setTheme(pinkTheme);
-  function();
-  //size(400, 500); //width, height (non fullscreen is not supported in this version
-  fullScreen(); //displayWidth, displayHeight
-  appWidth = displayWidth;
-  appHeight = displayHeight;
-  println(displayWidth, displayHeight);
-  //Landscape is HARDCODED
+  fullScreen(); 
   String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "No, fix your device"; 
   println(displayInstructions);
   
+  //Load fonts
   assets = loadFont("SegoeMDL2Assets-48.vlw");
   defaultFont = createFont("OpenSans-Bold.ttf", 48, true);
   
-  //See Divs File For What the Functions Do
+  //draws out initial screen state
   createDivs();
   setDivColors();
   drawDivs();
@@ -108,93 +93,7 @@ void setup() {
 
 //DRAW
 void draw() {
-  if(quitButtonRect.isHovering() == true){
-    quitButtonRect.rectColor = currentTheme[1];
-    quitButtonRect.drawRect();
-    printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2, 72, currentTheme[2]);
-  }
-  else{
-    quitButtonRect.rectColor = currentTheme[topBarColor];
-    quitButtonRect.drawRect();
-    printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2, 72, currentTheme[3]);
-  }
-  
-  if(settingsButtonRect.isHovering() == true || selectedPanelUse == 2){
-    settingsButtonRect.rectColor = currentTheme[1];
-    settingsButtonRect.drawRect();
-    printAsset("\uE713", (settingsButtonRect.rectX + settingsButtonRect.rectWidth / 2), (settingsButtonRect.rectY + settingsButtonRect.rectHeight) / 2, 72, currentTheme[2]);
-  }
-  else{
-    settingsButtonRect.rectColor = currentTheme[topBarColor];
-    settingsButtonRect.drawRect();
-    printAsset("\uE713", (settingsButtonRect.rectX + settingsButtonRect.rectWidth / 2), (settingsButtonRect.rectY + settingsButtonRect.rectHeight) / 2, 72, currentTheme[3]);
-  }
-  
-  if(musicButtonRect.isHovering() == true || selectedPanelUse == 1){
-    musicButtonRect.rectColor = currentTheme[1];
-    musicButtonRect.drawRect();
-    printAsset("\uEC4F", (musicButtonRect.rectX + musicButtonRect.rectWidth / 2), (musicButtonRect.rectY + musicButtonRect.rectHeight) / 2, 72, currentTheme[2]);
-  }
-  else{
-    musicButtonRect.rectColor = currentTheme[topBarColor];
-    musicButtonRect.drawRect();
-    printAsset("\uEC4F", (musicButtonRect.rectX + musicButtonRect.rectWidth / 2), (musicButtonRect.rectY + musicButtonRect.rectHeight) / 2, 72, currentTheme[3]);
-  }
-  
-  if(uploadButtonRect.isHovering() == true){
-    uploadButtonRect.rectColor = currentTheme[1];
-    uploadButtonRect.drawRect();
-    printAsset("\uE898", (uploadButtonRect.rectX + uploadButtonRect.rectWidth / 2), (uploadButtonRect.rectY + uploadButtonRect.rectHeight) / 2, 72, currentTheme[2]);
-  }
-  else{
-     uploadButtonRect.rectColor = currentTheme[topBarColor];
-    uploadButtonRect.drawRect();
-    printAsset("\uE898", (uploadButtonRect.rectX + uploadButtonRect.rectWidth / 2), (uploadButtonRect.rectY + uploadButtonRect.rectHeight) / 2, 72, currentTheme[3]);
-  }
-  
-  if(playButton.isHoveringCircle() == true){
-    playButton.rectColor = currentTheme[8];
-    playButton.drawCircle();
-    if(song.isPlaying() == true){
-      printAsset("\uF8AE", playButton.rectX, playButton.rectY, 30,  currentTheme[10]);
-    }
-    else{
-      printAsset("\uF5B0", playButton.rectX, playButton.rectY, 30, currentTheme[10]);
-    }
-  }
-  else{
-    playButton.rectColor = currentTheme[7];
-    playButton.drawCircle();
-    if(song.isPlaying() == true){
-      printAsset("\uF8AE", playButton.rectX, playButton.rectY, 30,  currentTheme[9]);
-    }
-    else{
-      printAsset("\uF5B0", playButton.rectX, playButton.rectY, 30,  currentTheme[9]);
-    }
-  }
-  
-  if(lastSongButton.isHoveringCircle() == true){
-    lastSongButton.rectColor = currentTheme[8];
-    lastSongButton.drawCircle();
-    printAsset("\uF8AC", lastSongButton.rectX, lastSongButton.rectY, 30,  currentTheme[10]);
-    }
-  else{
-    lastSongButton.rectColor = currentTheme[7];
-    lastSongButton.drawCircle();
-    printAsset("\uF8AC", lastSongButton.rectX, lastSongButton.rectY, 30,  currentTheme[9]);
-  }
-  
-  if(nextSongButton.isHoveringCircle() == true){
-    nextSongButton.rectColor = currentTheme[8];
-    nextSongButton.drawCircle();
-    printAsset("\uF8AD", nextSongButton.rectX, nextSongButton.rectY, 30,  currentTheme[10]);
-  }
-  else{
-    nextSongButton.rectColor = currentTheme[7];
-    nextSongButton.drawCircle();
-    printAsset("\uF8AD", nextSongButton.rectX, nextSongButton.rectY, 30 , currentTheme[9]);
-  }
- 
+  drawButtons();
   autoPlay();
   
 } //END DRAW

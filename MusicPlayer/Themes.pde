@@ -97,7 +97,7 @@ color[] lightModeTheme = new color[]{
   //songSelectionRectColor
   color(228,229,241),
   // songSelectionRectTextColor
-  color(255,255,255)
+  color(0,0,0)
 };
 
 color[] pinkTheme = new color[]{
@@ -124,18 +124,10 @@ color[] pinkTheme = new color[]{
   // musicControlButtonsAssetHoverColor
   color(0,0,0),
   //songSelectionRectColor
-  color(255, 232, 234),
+  color(227, 94, 94),
   // songSelectionRectTextColor
   color(0,0,0)
 };
-
-
-
-void function(){
-  for(int i = 0; i < currentTheme.length; i++){
-      println(i , currentTheme[i]);
-  }
-}
 
 void setTheme(color[] theme){
   for(int i = 0; i < theme.length; i++){

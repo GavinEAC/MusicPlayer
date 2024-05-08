@@ -7,14 +7,7 @@ Rect panelThree;
 Rect albumCoverRect;
 Rect songTextRect;
 
-//Buttons Rects
-Rect settingsButtonRect;
-Rect musicButtonRect;
-Rect uploadButtonRect;
-Rect quitButtonRect;
-Rect lastSongButton;
-Rect playButton;
-Rect nextSongButton;
+
 
 void createDivs(){
   backgroundRect = new parentRect();
@@ -45,27 +38,4 @@ void drawDivs(){
   strokeWeight(4);
   panelThree.drawRect();
   songTextRect.drawRect();
-}
-
-void createButtons(){
-  settingsButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
-  settingsButtonRect.rectWidth = settingsButtonRect.rectHeight;
-  
-  musicButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
-  musicButtonRect.rectX = musicButtonRect.rectParent.rectHeight * 1;
-  musicButtonRect.rectWidth = musicButtonRect.rectHeight;
-  musicButtonRect.rectColor = color(0,255,0);
-  
-  uploadButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
-  uploadButtonRect.rectX = uploadButtonRect.rectHeight * 2;
-  uploadButtonRect.rectWidth = uploadButtonRect.rectHeight;
-  uploadButtonRect.rectColor = color(0,0,255);
-  
-  quitButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
-  quitButtonRect.rectX = quitButtonRect.rectParent.rectWidth - quitButtonRect.rectParent.rectHeight;
-  quitButtonRect.rectWidth = quitButtonRect.rectHeight;
-  
-  lastSongButton = new Rect(panelTwo, "%40", "%90", "%7", "0");
-  playButton = new Rect(panelTwo, "%50", "%90", "%10", "0");
-  nextSongButton = new Rect(panelTwo, "%60", "%90", "%7", "0");
 }
