@@ -1,17 +1,6 @@
-/*
-COLOURS NEEDED
-TopBar
-TopBar Button Hover Color
-panel one back
-panel two back
-panel three back
-pause play etc button
-pause play etc button hover colour 
-album cover outline color(Maybe if i can make it show up)
-song selection rects
-top bar asset color 
-pause Play etc button asset color
-*/
+//
+//Im a programmer, not a graphic designer. I tried my best 
+//
 
 color topBarColor;
 color topBarButtonHoverColor;
@@ -95,7 +84,7 @@ color[] lightModeTheme = new color[]{
   // musicControlButtonsAssetHoverColor
   color(0,0,0),
   //songSelectionRectColor
-  color(228,229,241),
+  color(207, 207, 209),
   // songSelectionRectTextColor
   color(0,0,0)
 };

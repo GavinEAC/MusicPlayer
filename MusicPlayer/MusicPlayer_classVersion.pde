@@ -39,6 +39,7 @@ void setup() {
   createDivs();
   setDivColors();
   drawDivs();
+  selectedPanelUse = 1;
   albumCoverRect.drawImage("demoAlbumCover.jpg");
   createButtons();
   //Buttons are drawn in draw Function, so its not needed here
@@ -82,6 +83,7 @@ void setup() {
   }
   
   drawSongSelectionRects();
+  createSettingsRects();
 }
 //END SETUP
 
@@ -93,6 +95,14 @@ void setup() {
 
 //DRAW
 void draw() {
+  
+  panelOne.drawRect();
+  if(selectedPanelUse == 1){
+    drawSongSelectionRects();
+  } 
+  else if(selectedPanelUse == 2){
+    drawSettingsRects();
+  }
   drawButtons();
   autoPlay();
   
@@ -100,18 +110,20 @@ void draw() {
 
 
 void keyPressed() {
-  if(key == 'u' || key == 'U'){
-    if((songLevel + 1)* 5 <= songList.length){
-      songLevel++;
-      println(songLevel);
-      drawSongSelectionRects();
+  if(selectedPanelUse == 1){
+    if(key == 'u' || key == 'U'){
+      if((songLevel + 1)* 5 <= songList.length){
+        songLevel++;
+        println(songLevel);
+        drawSongSelectionRects();
+      }
     }
-  }
-  if(key == 'i' || key == 'I'){
-    if(songLevel > 0){
-      songLevel--;
-      println(songLevel);
-      drawSongSelectionRects();
+    if(key == 'i' || key == 'I'){
+      if(songLevel > 0){
+        songLevel--;
+        println(songLevel);
+        drawSongSelectionRects();
+      }
     }
   }
 } //End keyPressed
@@ -154,28 +166,29 @@ void mousePressed() {
       song.play();
     }
   }   
-  
-  if(songLevel * 5 + 5 > songSelectionRectArray.length){
-    for(int i = 5 * songLevel; i < songSelectionRectArray.length; i++){
-      if(songSelectionRectArray[i].isHovering() == true){
-        song.pause();
-        song.rewind();
-        currentSong = songSelectionRectArray[i].rectID;
-        song = minim.loadFile(songList[currentSong]);
-        song.rewind();
-        song.play();
+  if(selectedPanelUse == 1){
+    if(songLevel * 5 + 5 > songSelectionRectArray.length){
+      for(int i = 5 * songLevel; i < songSelectionRectArray.length; i++){
+        if(songSelectionRectArray[i].isHovering() == true){
+          song.pause();
+          song.rewind();
+          currentSong = songSelectionRectArray[i].rectID;
+          song = minim.loadFile(songList[currentSong]);
+          song.rewind();
+          song.play();
+        }
       }
     }
-  }
-  else{
-    for(int i = 5 * songLevel; i < 5 * songLevel + 5; i++){
-      if(songSelectionRectArray[i].isHovering() == true){
-        song.pause();
-        song.rewind();
-        currentSong = songSelectionRectArray[i].rectID;
-        song = minim.loadFile(songList[currentSong]);
-        song.rewind();
-        song.play();
+    else{
+      for(int i = 5 * songLevel; i < 5 * songLevel + 5; i++){
+        if(songSelectionRectArray[i].isHovering() == true){
+          song.pause();
+          song.rewind();
+          currentSong = songSelectionRectArray[i].rectID;
+          song = minim.loadFile(songList[currentSong]);
+          song.rewind();
+          song.play();
+        }
       }
     }
   }

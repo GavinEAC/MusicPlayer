@@ -7,7 +7,7 @@ Rect lastSongButton;
 Rect playButton;
 Rect nextSongButton;
 
-
+//Instantiates Buttons for top bar and music Control
 void createButtons(){
   settingsButtonRect = new Rect(topBarRect, "0", "0", "0", "%100");
   settingsButtonRect.rectWidth = settingsButtonRect.rectHeight;
@@ -31,6 +31,7 @@ void createButtons(){
   nextSongButton = new Rect(panelTwo, "%60", "%90", "%7", "0");
 }
 
+//Draw Buttons for top bar and music Control( and manages hover detection)
 void drawButtons(){
   if(quitButtonRect.isHovering() == true){
     quitButtonRect.rectColor = currentTheme[1];
@@ -120,6 +121,7 @@ void drawButtons(){
   }
 }
 
+//Creates and draws an array of rects which correspond to each song in songList
 void drawSongSelectionRects(){
   if(songLevel * 5 + 5 > songSelectionRectArray.length){
     panelOne.drawRect();
