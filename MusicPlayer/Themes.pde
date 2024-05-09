@@ -15,6 +15,7 @@ color musicControlButtonsAssetColor;
 color musicControlButtonsAssetHoverColor;
 color songSelectionRectColor;
 color songSelectionRectTextColor;
+
 color[] currentTheme = new color[] {
   topBarColor,
   topBarButtonHoverColor,
@@ -117,7 +118,7 @@ color[] pinkTheme = new color[]{
   // songSelectionRectTextColor
   color(0,0,0)
 };
-
+  
 void setTheme(color[] theme){
   for(int i = 0; i < theme.length; i++){
     currentTheme[i] = theme[i];

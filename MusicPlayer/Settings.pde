@@ -1,5 +1,11 @@
+//Header Rects
 Rect settingsHeader;
 Rect themeSelection;
+
+//Button Rects
+Rect darkModeThemeButton;
+Rect lightModeThemeButton;
+Rect pinkThemeButton;
 
 void createSettingsRects(){
   settingsHeader = new Rect(panelOne, "0", "0", "%100", "%7");
@@ -26,9 +32,17 @@ void drawSettingsRects(){
 }
 
 void createSettingsButtons(){
-  
+  darkModeThemeButton = new Rect(panelOne, "0", "%14", "%100", "%5");
+  lightModeThemeButton = new Rect(panelOne, "0", "%20", "%100", "%5");
+  pinkThemeButton = new Rect(panelOne, "0", "%26", "%100", "%5");
 }
 
 void drawSettingsButtons(){
+  darkModeThemeButton.rectColor = color(255,255,255);
+  darkModeThemeButton.drawRect();
+  lightModeThemeButton.rectColor = color(255,255,255);
+  lightModeThemeButton.drawRect();
+  pinkThemeButton.rectColor = color(255,255,255);
+  pinkThemeButton.drawRect();
   
 }

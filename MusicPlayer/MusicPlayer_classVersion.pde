@@ -22,6 +22,7 @@ String[] songList;
 int currentSong;
 Rect[] songSelectionRectArray;
 int songLevel = 0;
+String[] listOfFiles;
 
 
 //SETUP
@@ -63,7 +64,7 @@ void setup() {
   //Loads Songs from music folder and adds them to an array
   String path = sketchPath("data/music");
   File musicDir = new File(path);
-  String[] listOfFiles = musicDir.list();
+  listOfFiles = musicDir.list();
   for(int i = 0; i < listOfFiles.length; i++){
     listOfFiles[i] = "music/" + listOfFiles[i];
   }
@@ -76,14 +77,11 @@ void setup() {
   
   songSelectionRectArray = new Rect[songList.length];
   
-  for(int i = 0; i < listOfFiles.length; i++){
-    songSelectionRectArray[i] = new Rect(panelOne, "0", "0", "%100", "f1/5");
-    songSelectionRectArray[i].rectColor = color(0,255,255);
-    songSelectionRectArray[i].rectID = i;
-  }
-  
+ 
+  createSongSelectionRects();
   drawSongSelectionRects();
   createSettingsRects();
+  createSettingsButtons();
 }
 //END SETUP
 
@@ -102,6 +100,7 @@ void draw() {
   } 
   else if(selectedPanelUse == 2){
     drawSettingsRects();
+    drawSettingsButtons();
   }
   drawButtons();
   autoPlay();

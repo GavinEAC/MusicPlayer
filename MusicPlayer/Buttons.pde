@@ -121,7 +121,15 @@ void drawButtons(){
   }
 }
 
-//Creates and draws an array of rects which correspond to each song in songList
+void createSongSelectionRects(){
+  for(int i = 0; i < listOfFiles.length; i++){
+    songSelectionRectArray[i] = new Rect(panelOne, "0", "0", "%100", "f1/5");
+    songSelectionRectArray[i].rectColor = color(0,255,255);
+    songSelectionRectArray[i].rectID = i;
+  }
+}
+
+//Creates an array of rects which correspond to each song in songList
 void drawSongSelectionRects(){
   if(songLevel * 5 + 5 > songSelectionRectArray.length){
     panelOne.drawRect();
