@@ -27,3 +27,24 @@ void autoPlay(){
     }
   }
 }
+
+void printSongInfo(){
+  textAlign(LEFT, CENTER);
+  String songName = "Song Name";
+  int songNameSize = 24;
+  String songArtist = "Artist Name";
+  int songArtistSize = 18;
+  String songDuration = "00:00";
+  int songDurationSize = 12;
+  textFont(defaultFont);
+  fill(0,0,0);
+  textSize(songNameSize);
+  text(songName, songTextRect.rectX, songTextRect.rectY + songNameSize);
+  
+  textSize(songDurationSize);
+  text(songDuration, songTextRect.rectX + textWidth(songName)*2.1, songTextRect.rectY + songNameSize);
+  
+  textSize(songArtistSize);
+  text(songArtist, songTextRect.rectX, songTextRect.rectY + songNameSize + songArtistSize);
+}
+  

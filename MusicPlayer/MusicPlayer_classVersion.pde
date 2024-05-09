@@ -2,6 +2,8 @@ import ddf.minim.*;
 import java.lang.reflect.Array;  
 import java.util.Arrays;  
 import java.io.*;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileSystemView;
 
 //GLOBAL VARIABLES
 int appWidth, appHeight;
@@ -27,7 +29,10 @@ String[] listOfFiles;
 
 //SETUP
 void setup() {
-  setTheme(pinkTheme);
+  
+  JfileChooser jfc;
+  jfc = new JFileChooser();
+  setTheme(lightModeTheme);
   fullScreen(); 
   String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "No, fix your device"; 
   println(displayInstructions);
@@ -37,6 +42,7 @@ void setup() {
   defaultFont = createFont("OpenSans-Bold.ttf", 48, true);
   
   //draws out initial screen state
+  
   createDivs();
   setDivColors();
   drawDivs();
@@ -45,21 +51,7 @@ void setup() {
   createButtons();
   //Buttons are drawn in draw Function, so its not needed here
   
-  String songName = "Song Name";
-  int songNameSize = 24;
-  String songArtist = "Artist Name";
-  int songArtistSize = 18;
-  String songDuration = "00:00";
-  int songDurationSize = 12;
-  fill(0,0,0);
-  textSize(songNameSize);
-  text(songName, songTextRect.rectX, songTextRect.rectY + songNameSize);
-  
-  textSize(songDurationSize);
-  text(songDuration, songTextRect.rectX + textWidth(songName)*2.1, songTextRect.rectY + songNameSize);
-  
-  textSize(songArtistSize);
-  text(songArtist, songTextRect.rectX, songTextRect.rectY + songNameSize + songArtistSize);
+ 
   
   //Loads Songs from music folder and adds them to an array
   String path = sketchPath("data/music");
@@ -93,7 +85,7 @@ void setup() {
 
 //DRAW
 void draw() {
-  
+  printSongInfo();
   panelOne.drawRect();
   if(selectedPanelUse == 1){
     drawSongSelectionRects();
@@ -198,6 +190,28 @@ void mousePressed() {
   
   if(settingsButtonRect.isHovering() == true){
     selectedPanelUse = 2;
+  }
+  
+  if(darkModeThemeButton.isHovering() == true){
+    chosenTheme = 2;
+    setTheme(darkModeTheme);
+    setDivColors();
+    drawDivs();
+    albumCoverRect.drawImage("demoAlbumCover.jpg");
+  }
+  if(lightModeThemeButton.isHovering() == true){
+    chosenTheme = 1;
+    setTheme(lightModeTheme);
+    setDivColors();
+    drawDivs();
+    albumCoverRect.drawImage("demoAlbumCover.jpg");
+  }
+  if(pinkThemeButton.isHovering() == true){
+    chosenTheme = 3;
+    setTheme(pinkTheme);
+    setDivColors();
+    drawDivs();
+    albumCoverRect.drawImage("demoAlbumCover.jpg");
   }
 } //End mousePressed
 

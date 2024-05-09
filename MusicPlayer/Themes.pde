@@ -15,6 +15,7 @@ color musicControlButtonsAssetColor;
 color musicControlButtonsAssetHoverColor;
 color songSelectionRectColor;
 color songSelectionRectTextColor;
+color settingsTextColor;
 
 color[] currentTheme = new color[] {
   topBarColor,
@@ -29,7 +30,8 @@ color[] currentTheme = new color[] {
   musicControlButtonsAssetColor,
   musicControlButtonsAssetHoverColor,
   songSelectionRectColor,
-  songSelectionRectTextColor
+  songSelectionRectTextColor,
+  settingsTextColor
 };
 
 color[] darkModeTheme = new color[]{
@@ -58,6 +60,8 @@ color[] darkModeTheme = new color[]{
   //songSelectionRectColor
   color(60,60,80),
   // songSelectionRectTextColor
+  color(255,255,255),
+  //settingsTextColor
   color(255,255,255)
 };
 
@@ -87,6 +91,8 @@ color[] lightModeTheme = new color[]{
   //songSelectionRectColor
   color(207, 207, 209),
   // songSelectionRectTextColor
+  color(0,0,0),
+  //settingsTextColor
   color(0,0,0)
 };
 
@@ -116,7 +122,9 @@ color[] pinkTheme = new color[]{
   //songSelectionRectColor
   color(227, 94, 94),
   // songSelectionRectTextColor
-  color(0,0,0)
+  color(0,0,0),
+  //settingsTextColor
+  color(255,255,255)
 };
   
 void setTheme(color[] theme){

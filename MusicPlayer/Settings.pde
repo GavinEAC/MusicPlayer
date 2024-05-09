@@ -1,3 +1,6 @@
+//Misc. Variables i guess
+int chosenTheme = 1;
+
 //Header Rects
 Rect settingsHeader;
 Rect themeSelection;
@@ -18,14 +21,14 @@ void drawSettingsRects(){
   //Usually I only Want the text to show Up for this so draw method is commented out( only use for debugging)
   //settingsHeader.drawRect();
   textAlign(CENTER, CENTER);
-  fill(255, 255, 255);
+  fill(currentTheme[13]);
   textFont(defaultFont);
   textSize(48);
   text("SETTINGS", settingsHeader.rectWidth / 2 , settingsHeader.rectHeight / 2 + settingsHeader.rectY);
   
   //themeSelection.drawRect();
   textAlign(LEFT, CENTER);
-  fill(255, 255, 255);
+  fill(currentTheme[13]);
   textFont(defaultFont);
   textSize(24);
   text("THEME", themeSelection.rectX, themeSelection.rectHeight / 2 + themeSelection.rectY);
@@ -38,11 +41,41 @@ void createSettingsButtons(){
 }
 
 void drawSettingsButtons(){
-  darkModeThemeButton.rectColor = color(255,255,255);
-  darkModeThemeButton.drawRect();
-  lightModeThemeButton.rectColor = color(255,255,255);
-  lightModeThemeButton.drawRect();
-  pinkThemeButton.rectColor = color(255,255,255);
-  pinkThemeButton.drawRect();
+  if(darkModeThemeButton.isHovering() == true || chosenTheme == 2){
+    darkModeThemeButton.rectColor = currentTheme[0];
+    darkModeThemeButton.drawRect();
+    fill(currentTheme[1]);
+    text("Dark Mode", darkModeThemeButton.rectX, darkModeThemeButton.rectHeight / 2 + darkModeThemeButton.rectY);
+  }
+  else{
+    darkModeThemeButton.rectColor = currentTheme[5];
+    darkModeThemeButton.drawRect();
+    fill(currentTheme[2]);
+    text("Dark Mode", darkModeThemeButton.rectX, darkModeThemeButton.rectHeight / 2 + darkModeThemeButton.rectY);
+  }
+  if(lightModeThemeButton.isHovering() == true || chosenTheme == 1){
+    lightModeThemeButton.rectColor = currentTheme[0];
+    lightModeThemeButton.drawRect();
+    fill(currentTheme[1]);
+    text("Light Mode", lightModeThemeButton.rectX, lightModeThemeButton.rectHeight / 2 + lightModeThemeButton.rectY);
+  }
+  else{
+    lightModeThemeButton.rectColor = currentTheme[5];
+    lightModeThemeButton.drawRect();
+    fill(currentTheme[2]);
+    text("Light Mode", lightModeThemeButton.rectX, lightModeThemeButton.rectHeight / 2 + lightModeThemeButton.rectY);
+  }
   
+  if(pinkThemeButton.isHovering() == true || chosenTheme == 3){
+    pinkThemeButton.rectColor = currentTheme[0];
+    pinkThemeButton.drawRect();
+    fill(currentTheme[1]);
+    text("PINK MODE", pinkThemeButton.rectX, pinkThemeButton.rectHeight / 2 + pinkThemeButton.rectY);
+  }
+  else{
+    pinkThemeButton.rectColor = currentTheme[5];
+    pinkThemeButton.drawRect();
+    fill(currentTheme[2]);
+    text("PINK MODE", pinkThemeButton.rectX, pinkThemeButton.rectHeight / 2 + pinkThemeButton.rectY);
+  }
 }
