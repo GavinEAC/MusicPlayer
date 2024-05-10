@@ -2,8 +2,6 @@ import ddf.minim.*;
 import java.lang.reflect.Array;  
 import java.util.Arrays;  
 import java.io.*;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileSystemView;
 
 //GLOBAL VARIABLES
 int appWidth, appHeight;
@@ -29,9 +27,6 @@ String[] listOfFiles;
 
 //SETUP
 void setup() {
-  
-  JfileChooser jfc;
-  jfc = new JFileChooser();
   setTheme(lightModeTheme);
   fullScreen(); 
   String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "No, fix your device"; 
