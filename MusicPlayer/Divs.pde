@@ -26,7 +26,7 @@ void setDivColors(){
   panelThree.rectColor = currentTheme[6];
   //These dont normaly appear so they dont get a theme colour attribute
   albumCoverRect.rectColor = color(255,255,255);
-  songTextRect.rectColor = color(255,255,255);
+  songTextRect.rectColor = currentTheme[5];
 }
 
 void drawDivs(){
@@ -37,5 +37,5 @@ void drawDivs(){
   albumCoverRect.drawRect();
   strokeWeight(4);
   panelThree.drawRect();
-  songTextRect.drawRect();
+  //songTextRect.drawRect();
 }

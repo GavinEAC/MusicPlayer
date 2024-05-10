@@ -15,6 +15,7 @@ void autoPlay(){
       song.pause();
       currentSong++;
       song = minim.loadFile(songList[currentSong ]);
+      songMetaData = song.getMetaData();
       song.rewind();
       song.play();
     }
@@ -22,6 +23,7 @@ void autoPlay(){
       song.pause();
       currentSong = 0;
       song = minim.loadFile(songList[currentSong ]);
+      songMetaData = song.getMetaData();
       song.rewind();
       song.play();
     }
@@ -30,14 +32,34 @@ void autoPlay(){
 
 void printSongInfo(){
   textAlign(LEFT, CENTER);
-  String songName = "Song Name";
+  String songName;
+  String songArtist;
+  
+  if(songMetaData.title() != ""){
+    songName = songMetaData.title();
+  }
+  else{
+     songName = "[Title Not Found]";
+  }
   int songNameSize = 24;
-  String songArtist = "Artist Name";
+  
+  if(songMetaData.title() != ""){
+    songArtist = songMetaData.author();
+  }
+  else{
+     songArtist = "[Artist Not Found]";
+  }
   int songArtistSize = 18;
-  String songDuration = "00:00";
+  
+  int songDurationMinutes = songMetaData.length()/1000/60;
+  int songDurationSeconds = (songMetaData.length()/1000) - (songMetaData.length()/1000/60) * 60;
+  String songDuration = String.valueOf(songDurationMinutes) + ":" + String.valueOf(songDurationSeconds);
   int songDurationSize = 12;
+  
+  songTextRect.drawRect();
+  
   textFont(defaultFont);
-  fill(0,0,0);
+  fill(255,255,255);
   textSize(songNameSize);
   text(songName, songTextRect.rectX, songTextRect.rectY + songNameSize);
   

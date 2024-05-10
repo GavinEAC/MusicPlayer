@@ -1,5 +1,5 @@
 //Misc. Variables i guess
-int chosenTheme = 1;
+int chosenTheme = 2;
 
 //Header Rects
 Rect settingsHeader;

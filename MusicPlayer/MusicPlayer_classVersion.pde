@@ -1,4 +1,10 @@
 import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 import java.lang.reflect.Array;  
 import java.util.Arrays;  
 import java.io.*;
@@ -18,6 +24,8 @@ PImage demoAlbumCover;
 //Minim Initialization and song management variables
 Minim minim;
 AudioPlayer song;
+AudioMetaData songMetaData;
+
 String[] songList;
 int currentSong;
 Rect[] songSelectionRectArray;
@@ -27,7 +35,7 @@ String[] listOfFiles;
 
 //SETUP
 void setup() {
-  setTheme(lightModeTheme);
+  setTheme(darkModeTheme);
   fullScreen(); 
   String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "No, fix your device"; 
   println(displayInstructions);
@@ -61,7 +69,7 @@ void setup() {
   songList = listOfFiles;
   currentSong = 0;
   song = minim.loadFile(songList[currentSong]);
-  
+  songMetaData = song.getMetaData();
   songSelectionRectArray = new Rect[songList.length];
   
  
@@ -80,6 +88,10 @@ void setup() {
 
 //DRAW
 void draw() {
+  
+    println( "Song Length (in minutes & seconds): ", (songMetaData.length()/1000)/60, " minute", (songMetaData.length()/1000)-((songMetaData.length()/1000)/60 * 60), " seconds" );
+
+  
   printSongInfo();
   panelOne.drawRect();
   if(selectedPanelUse == 1){
@@ -137,6 +149,7 @@ void mousePressed() {
       song.pause();
       currentSong --;
       song = minim.loadFile(songList[currentSong]);
+      songMetaData = song.getMetaData();
       song.rewind();
       song.play();
     }
@@ -148,6 +161,7 @@ void mousePressed() {
       song.pause();
       currentSong++;
       song = minim.loadFile(songList[currentSong]);
+      songMetaData = song.getMetaData();
       song.rewind();
       song.play();
     }
@@ -160,6 +174,7 @@ void mousePressed() {
           song.rewind();
           currentSong = songSelectionRectArray[i].rectID;
           song = minim.loadFile(songList[currentSong]);
+          songMetaData = song.getMetaData();
           song.rewind();
           song.play();
         }
@@ -172,6 +187,7 @@ void mousePressed() {
           song.rewind();
           currentSong = songSelectionRectArray[i].rectID;
           song = minim.loadFile(songList[currentSong]);
+          songMetaData = song.getMetaData();
           song.rewind();
           song.play();
         }
@@ -187,21 +203,21 @@ void mousePressed() {
     selectedPanelUse = 2;
   }
   
-  if(darkModeThemeButton.isHovering() == true){
+  if(darkModeThemeButton.isHovering() == true  && selectedPanelUse == 2){
     chosenTheme = 2;
     setTheme(darkModeTheme);
     setDivColors();
     drawDivs();
     albumCoverRect.drawImage("demoAlbumCover.jpg");
   }
-  if(lightModeThemeButton.isHovering() == true){
+  if(lightModeThemeButton.isHovering() == true && selectedPanelUse == 2){
     chosenTheme = 1;
     setTheme(lightModeTheme);
     setDivColors();
     drawDivs();
     albumCoverRect.drawImage("demoAlbumCover.jpg");
   }
-  if(pinkThemeButton.isHovering() == true){
+  if(pinkThemeButton.isHovering() == true && selectedPanelUse == 2){
     chosenTheme = 3;
     setTheme(pinkTheme);
     setDivColors();

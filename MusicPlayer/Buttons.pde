@@ -36,7 +36,7 @@ void drawButtons(){
   if(quitButtonRect.isHovering() == true){
     quitButtonRect.rectColor = currentTheme[1];
     quitButtonRect.drawRect();
-    printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2, 72, currentTheme[2]);
+    printAsset("\uE8BB", (quitButtonRect.rectX + quitButtonRect.rectWidth / 2), (quitButtonRect.rectY + quitButtonRect.rectHeight) / 2, 72, color(255,0,0));
   }
   else{
     quitButtonRect.rectColor = currentTheme[topBarColor];
