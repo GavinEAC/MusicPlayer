@@ -51,10 +51,18 @@ void printSongInfo(){
   }
   int songArtistSize = 18;
   
-  int songDurationMinutes = songMetaData.length()/1000/60;
-  int songDurationSeconds = (songMetaData.length()/1000) - (songMetaData.length()/1000/60) * 60;
-  String songDuration = String.valueOf(songDurationMinutes) + ":" + String.valueOf(songDurationSeconds);
-  int songDurationSize = 12;
+  int songDuration = songMetaData.length();
+  int songPosition = song.position();
+  int songTimeRemainder = songDuration - songPosition;
+  String songTimeRemainderString;
+  if(( songTimeRemainder/1000 - ( songTimeRemainder/1000/60)*60 ) < 10){
+    songTimeRemainderString = songTimeRemainder/1000/60 + ":" + "0" + ( songTimeRemainder/1000 - ( songTimeRemainder/1000/60)*60 );
+  }
+  else{
+    songTimeRemainderString = songTimeRemainder/1000/60 + ":" + ( songTimeRemainder/1000 - ( songTimeRemainder/1000/60)*60 );
+  }
+
+  int songTimeRemainderSize = 12;
   
   songTextRect.drawRect();
   
@@ -63,8 +71,8 @@ void printSongInfo(){
   textSize(songNameSize);
   text(songName, songTextRect.rectX, songTextRect.rectY + songNameSize);
   
-  textSize(songDurationSize);
-  text(songDuration, songTextRect.rectX + textWidth(songName)*2.1, songTextRect.rectY + songNameSize);
+  textSize(songTimeRemainderSize);
+  text(songTimeRemainderString, songTextRect.rectX + textWidth(songName)*2.1, songTextRect.rectY + songNameSize);
   
   textSize(songArtistSize);
   text(songArtist, songTextRect.rectX, songTextRect.rectY + songNameSize + songArtistSize);

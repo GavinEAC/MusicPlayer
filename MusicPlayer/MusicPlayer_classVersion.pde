@@ -89,9 +89,6 @@ void setup() {
 //DRAW
 void draw() {
   
-    println( "Song Length (in minutes & seconds): ", (songMetaData.length()/1000)/60, " minute", (songMetaData.length()/1000)-((songMetaData.length()/1000)/60 * 60), " seconds" );
-
-  
   printSongInfo();
   panelOne.drawRect();
   if(selectedPanelUse == 1){
