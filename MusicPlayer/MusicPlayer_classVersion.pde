@@ -29,6 +29,7 @@ AudioMetaData songMetaData;
 String[] songList;
 int currentSong;
 Rect[] songSelectionRectArray;
+String[][] songSelectionRectInfoArray;
 int songLevel = 0;
 String[] listOfFiles;
 
@@ -72,7 +73,8 @@ void setup() {
   songMetaData = song.getMetaData();
   songSelectionRectArray = new Rect[songList.length];
   
- 
+  songSelectionRectInfoArray = new String[songList.length][3];
+  createSongSelectionRectInfo();
   createSongSelectionRects();
   drawSongSelectionRects();
   createSettingsRects();
@@ -109,14 +111,12 @@ void keyPressed() {
     if(key == 'u' || key == 'U'){
       if((songLevel + 1)* 5 <= songList.length){
         songLevel++;
-        println(songLevel);
         drawSongSelectionRects();
       }
     }
     if(key == 'i' || key == 'I'){
       if(songLevel > 0){
         songLevel--;
-        println(songLevel);
         drawSongSelectionRects();
       }
     }

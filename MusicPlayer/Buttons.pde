@@ -141,8 +141,10 @@ void drawSongSelectionRects(){
         textAlign(LEFT);
         textSize(24);
         fill(currentTheme[12]);
-        text(songList[i], songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 30);
-        text("songID: " + songSelectionRectArray[i].rectID, songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 60);
+        text(songSelectionRectInfoArray[i][0], songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 30);
+        textSize(20);
+        text(songSelectionRectInfoArray[i][2], songSelectionRectArray[i].rectWidth - (textWidth(songSelectionRectInfoArray[i][2]) + 20), songSelectionRectArray[i].rectY + 30);
+        text(songSelectionRectInfoArray[i][1], songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 60);
       }
   }
   else{
@@ -154,8 +156,10 @@ void drawSongSelectionRects(){
       textAlign(LEFT);
       textSize(24);
       fill(currentTheme[12]);
-      text(songList[i], songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 30);
-      text("songID: " + songSelectionRectArray[i].rectID, songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 60);
+      text(songSelectionRectInfoArray[i][0], songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 30);
+      textSize(20);
+      text(songSelectionRectInfoArray[i][2], songSelectionRectArray[i].rectWidth - (textWidth(songSelectionRectInfoArray[i][2]) + 20), songSelectionRectArray[i].rectY + 30);
+      text(songSelectionRectInfoArray[i][1], songSelectionRectArray[i].rectX, songSelectionRectArray[i].rectY + 60);
     }
   }
 }
