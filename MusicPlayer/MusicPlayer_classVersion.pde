@@ -232,6 +232,17 @@ void mousePressed() {
     drawDivs();
     albumCoverRect.drawImage("demoAlbumCover.jpg");
   }
-} //End mousePressed
-
+  if(progressBarBottom.isHovering() == true){
+    /*
+      float progressBarDisctancePercent = (( / progressBarBottom.rectWidth) * 100;
+      println("Progress Bar Clicked");
+      println(progressBarDisctancePercent);
+      */
+   float maxPos = (width - progressBarBottom.rectX) - progressBarBottom.rectX;
+   float chosenPos = mouseX - progressBarBottom.rectX;
+   float chosenPosPercent = (chosenPos / maxPos) * 100;
+   song.cue(Math.round((songMetaData.length() / 100) * chosenPosPercent));
+   progressBarTop.rectWidth = (progressBarBottom.rectWidth / 100) * chosenPosPercent;
+  }
+}
 // End MAIN Program

@@ -12,6 +12,7 @@ Rect nextSongButton;
 //Progress Bar
 Rect progressBarBottom;
 Rect progressBarTop;
+float songRemainderPercent;
 
 //Instantiates Buttons for top bar and music Control
 void createButtons(){
@@ -181,7 +182,7 @@ void drawProgressBar(){
   progressBarTop.drawRect();
   float position = song.position();
   float songLength = songMetaData.length();
-  float songRemainderPercent = (position/songLength) * 100;
+  songRemainderPercent = (position/songLength) * 100;
   progressBarTop.rectWidth = (progressBarBottom.rectWidth /100) * songRemainderPercent;
 }
 
