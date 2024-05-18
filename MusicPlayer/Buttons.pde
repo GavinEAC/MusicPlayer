@@ -1,11 +1,17 @@
-//Buttons Rects
+//Top Bar Buttons
 Rect settingsButtonRect;
 Rect musicButtonRect;
 Rect uploadButtonRect;
+
+//Music Managaement Buttons
 Rect quitButtonRect;
 Rect lastSongButton;
 Rect playButton;
 Rect nextSongButton;
+
+//Progress Bar
+Rect progressBarBottom;
+Rect progressBarTop;
 
 //Instantiates Buttons for top bar and music Control
 void createButtons(){
@@ -163,6 +169,22 @@ void drawSongSelectionRects(){
     }
   }
 }
+
+void createProgressBar(){
+  progressBarBottom = new Rect(panelTwo, "f325/1000", "%82", "%35", "f5/1000");
+  progressBarTop = new Rect(panelTwo, "f325/1000", "%82", "0", "f5/1000");
+  progressBarTop.rectColor = color(255,0,0);
+}
+
+void drawProgressBar(){
+  progressBarBottom.drawRect();
+  progressBarTop.drawRect();
+  float position = song.position();
+  float songLength = songMetaData.length();
+  float songRemainderPercent = (position/songLength) * 100;
+  progressBarTop.rectWidth = (progressBarBottom.rectWidth /100) * songRemainderPercent;
+}
+
 
 
 

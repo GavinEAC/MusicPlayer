@@ -46,7 +46,6 @@ void setup() {
   defaultFont = createFont("OpenSans-Bold.ttf", 48, true);
   
   //draws out initial screen state
-  
   createDivs();
   setDivColors();
   drawDivs();
@@ -74,11 +73,22 @@ void setup() {
   songSelectionRectArray = new Rect[songList.length];
   
   songSelectionRectInfoArray = new String[songList.length][3];
+  
   createSongSelectionRectInfo();
   createSongSelectionRects();
   drawSongSelectionRects();
+  
+  //drawn in Void Draw also
   createSettingsRects();
+  
+  //drawn in Void Draw
+  
   createSettingsButtons();
+  //drawn in Void Draw
+  
+ createProgressBar();
+ //drawn in Void Draw
+ 
 }
 //END SETUP
 
@@ -92,6 +102,7 @@ void setup() {
 void draw() {
   
   printSongInfo();
+  drawProgressBar();
   panelOne.drawRect();
   if(selectedPanelUse == 1){
     drawSongSelectionRects();

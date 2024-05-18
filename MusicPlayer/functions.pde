@@ -67,7 +67,7 @@ void printSongInfo(){
   songTextRect.drawRect();
   
   textFont(defaultFont);
-  fill(255,255,255);
+  fill(currentTheme[2]);
   textSize(songNameSize);
   text(songName, songTextRect.rectX, songTextRect.rectY + songNameSize);
   
