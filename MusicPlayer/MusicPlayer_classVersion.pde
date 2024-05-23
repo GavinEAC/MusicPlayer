@@ -26,6 +26,7 @@ Minim minim;
 AudioPlayer song;
 AudioMetaData songMetaData;
 
+File musicDir;
 String[] songList;
 int currentSong;
 Rect[] songSelectionRectArray;
@@ -58,7 +59,7 @@ void setup() {
   
   //Loads Songs from music folder and adds them to an array
   String path = sketchPath("data/music");
-  File musicDir = new File(path);
+  musicDir = new File(path);
   listOfFiles = musicDir.list();
   for(int i = 0; i < listOfFiles.length; i++){
     listOfFiles[i] = "music/" + listOfFiles[i];
@@ -73,7 +74,6 @@ void setup() {
   songSelectionRectArray = new Rect[songList.length];
   
   songSelectionRectInfoArray = new String[songList.length][3];
-  
   createSongSelectionRectInfo();
   createSongSelectionRects();
   drawSongSelectionRects();
@@ -211,6 +211,10 @@ void mousePressed() {
     selectedPanelUse = 2;
   }
   
+  if(uploadButtonRect.isHovering() == true){
+    selectInput("Select a song to add:", "fileSelected");
+  }
+  
   if(darkModeThemeButton.isHovering() == true  && selectedPanelUse == 2){
     chosenTheme = 2;
     setTheme(darkModeTheme);
@@ -233,16 +237,11 @@ void mousePressed() {
     albumCoverRect.drawImage("demoAlbumCover.jpg");
   }
   if(progressBarBottom.isHovering() == true){
-    /*
-      float progressBarDisctancePercent = (( / progressBarBottom.rectWidth) * 100;
-      println("Progress Bar Clicked");
-      println(progressBarDisctancePercent);
-      */
-   float maxPos = (width - progressBarBottom.rectX) - progressBarBottom.rectX;
-   float chosenPos = mouseX - progressBarBottom.rectX;
-   float chosenPosPercent = (chosenPos / maxPos) * 100;
-   song.cue(Math.round((songMetaData.length() / 100) * chosenPosPercent));
-   progressBarTop.rectWidth = (progressBarBottom.rectWidth / 100) * chosenPosPercent;
+    float maxPos = (width - progressBarBottom.rectX) - progressBarBottom.rectX;
+    float chosenPos = mouseX - progressBarBottom.rectX;
+    float chosenPosPercent = (chosenPos / maxPos) * 100;
+    song.cue(Math.round((songMetaData.length() / 100) * chosenPosPercent));
+    progressBarTop.rectWidth = (progressBarBottom.rectWidth / 100) * chosenPosPercent;
   }
 }
 // End MAIN Program

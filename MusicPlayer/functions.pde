@@ -78,18 +78,11 @@ void printSongInfo(){
   text(songArtist, songTextRect.rectX, songTextRect.rectY + songNameSize + songArtistSize);
 }
 
-void createSongSelectionRectInfo(){
-  for(int i = 0; i < songList.length; i++){
-    AudioPlayer songFile = minim.loadFile(songList[i]);
-    AudioMetaData songMD = songFile.getMetaData();
-    songSelectionRectInfoArray[i][0] = songMD.title();
-    songSelectionRectInfoArray[i][1] = songMD.author();
-    if(( songMD.length()/1000 - ( songMD.length()/1000/60)*60 ) < 10){
-      songSelectionRectInfoArray[i][2] = songMD.length()/1000/60 + ":" + "0" + ( songMD.length()/1000 - ( songMD.length()/1000/60)*60 );
-    }
-    else{
-      songSelectionRectInfoArray[i][2] = songMD.length()/1000/60 + ":" + ( songMD.length()/1000 - ( songMD.length()/1000/60)*60 );
-    }
-    
+void fileSelected(File selection){
+  if(selection == null){
+    println("no value given");
+  }
+  else{
+    println(selection);
   }
 }

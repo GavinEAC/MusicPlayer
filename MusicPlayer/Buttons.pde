@@ -136,6 +136,21 @@ void createSongSelectionRects(){
   }
 }
 
+void createSongSelectionRectInfo(){
+  for(int i = 0; i < songList.length; i++){
+    AudioPlayer songFile = minim.loadFile(songList[i]);
+    AudioMetaData songMD = songFile.getMetaData();
+    songSelectionRectInfoArray[i][0] = songMD.title();
+    songSelectionRectInfoArray[i][1] = songMD.author();
+    if(( songMD.length()/1000 - ( songMD.length()/1000/60)*60 ) < 10){
+      songSelectionRectInfoArray[i][2] = songMD.length()/1000/60 + ":" + "0" + ( songMD.length()/1000 - ( songMD.length()/1000/60)*60 );
+    }
+    else{
+      songSelectionRectInfoArray[i][2] = songMD.length()/1000/60 + ":" + ( songMD.length()/1000 - ( songMD.length()/1000/60)*60 );
+    }
+  }
+}
+
 //Creates an array of rects which correspond to each song in songList
 void drawSongSelectionRects(){
   if(songLevel * 5 + 5 > songSelectionRectArray.length){
