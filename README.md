@@ -13,7 +13,7 @@ My First GitHub Project. A Music Player For CS 10
 -[X] display time left in song <br>
 -[X] song selection menu <br>
 -[X] button to upload new songs <br>
--[ ] make said button actually work<br>
+-[ ] make said button actually work (file dialogue opens, cant figure out how to get a file into a directory)<br>
 -[X] settings button <br>
 -[X] settings panel <br>
 -[X] have scrollable list of songs or playlists <br>
