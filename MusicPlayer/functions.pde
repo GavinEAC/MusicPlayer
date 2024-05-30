@@ -83,6 +83,37 @@ void fileSelected(File selection){
     println("no value given");
   }
   else{
-    println(selection);
+    String fromFile = selection.getPath();
+    String path = sketchPath("data\\music");
+    String toFile = path + "\\" + selection.getName();
+    
+    Path source = Paths.get(fromFile);
+    Path target = Paths.get(toFile);
+    try{
+      Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+       } 
+       catch (IOException e){
+         e.printStackTrace();
+       }
+    listOfFiles = musicDir.list();
+    for(int i = 0; i < listOfFiles.length; i++){
+      listOfFiles[i] = "music/" + listOfFiles[i];
+    /*
+    println(1);
+    songList = listOfFiles;
+    println(2);
+    songSelectionRectArray = new Rect[songList.length];
+    println(3);
+    songSelectionRectInfoArray = new String[songList.length][3];
+    println(4);
+    
+    createSongSelectionRectInfo();
+    println(5);
+    createSongSelectionRects();
+    println(6);
+    drawSongSelectionRects();
+    println(7);
+    */
+    }
   }
 }

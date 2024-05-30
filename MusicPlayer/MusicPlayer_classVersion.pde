@@ -8,6 +8,9 @@ import ddf.minim.ugens.*;
 import java.lang.reflect.Array;  
 import java.util.Arrays;  
 import java.io.*;
+import java.io.File;
+import java.nio.file.*;
+
 
 //GLOBAL VARIABLES
 int appWidth, appHeight;
