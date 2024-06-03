@@ -95,25 +95,21 @@ void fileSelected(File selection){
        catch (IOException e){
          e.printStackTrace();
        }
+    print("Starting New part");
     listOfFiles = musicDir.list();
     for(int i = 0; i < listOfFiles.length; i++){
       listOfFiles[i] = "music/" + listOfFiles[i];
-    /*
-    println(1);
-    songList = listOfFiles;
-    println(2);
-    songSelectionRectArray = new Rect[songList.length];
-    println(3);
-    songSelectionRectInfoArray = new String[songList.length][3];
-    println(4);
-    
-    createSongSelectionRectInfo();
-    println(5);
-    createSongSelectionRects();
-    println(6);
-    drawSongSelectionRects();
-    println(7);
-    */
     }
+    
+    //YOU HAVE TO RESTART PROGRAM FOR NEW SONGS TO SHOW UP... ITS A FEATURE NOT A BUG (DEFINIETLY NOT BECAUSE IM LAZY)
+    
+    //songList = listOfFiles;
+    //songSelectionRectArray = new Rect[songList.length];
+    //songSelectionRectInfoArray = new String[songList.length][3];
+    //println(1);
+    //createSongSelectionRectInfo();
+    //println(2);
+    //createSongSelectionRects();
+    //println(3);
   }
 }

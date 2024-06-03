@@ -138,10 +138,16 @@ void createSongSelectionRects(){
 
 void createSongSelectionRectInfo(){
   for(int i = 0; i < songList.length; i++){
+    println(songList[i]);
+    //println(1);
     AudioPlayer songFile = minim.loadFile(songList[i]);
+    //println(2);
     AudioMetaData songMD = songFile.getMetaData();
+    //println(3);
     songSelectionRectInfoArray[i][0] = songMD.title();
+    //println(4);
     songSelectionRectInfoArray[i][1] = songMD.author();
+    //println(5);
     if(( songMD.length()/1000 - ( songMD.length()/1000/60)*60 ) < 10){
       songSelectionRectInfoArray[i][2] = songMD.length()/1000/60 + ":" + "0" + ( songMD.length()/1000 - ( songMD.length()/1000/60)*60 );
     }
@@ -154,9 +160,13 @@ void createSongSelectionRectInfo(){
 //Creates an array of rects which correspond to each song in songList
 void drawSongSelectionRects(){
   if(songLevel * 5 + 5 > songSelectionRectArray.length){
+    println("entered here");
     panelOne.drawRect();
     for(int i = 5 * songLevel; i < songSelectionRectArray.length; i++){
         songSelectionRectArray[i].rectY= songSelectionRectArray[i].rectHeight * (i - 5) + topBarRect.rectHeight;
+        if(songSelectionRectArray[i].rectY < 0){
+          songSelectionRectArray[i].rectY = songSelectionRectArray[i].rectY + 1000;
+        }
         songSelectionRectArray[i].rectColor = currentTheme[11];
         songSelectionRectArray[i].drawRect();
         textFont(defaultFont);
@@ -170,6 +180,7 @@ void drawSongSelectionRects(){
       }
   }
   else{
+    println("entered else");
     for(int i = 5 * songLevel; i < 5 * songLevel + 5; i++){
       songSelectionRectArray[i].rectY= songSelectionRectArray[i].rectHeight * i + topBarRect.rectHeight;
       songSelectionRectArray[i].rectColor = currentTheme[11];
